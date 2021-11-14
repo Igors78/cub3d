@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/07/27 19:30:49 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/14 12:08:10 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// < d > stands for data table stored in s_fdf structure
+// < d > stands for data table stored in s_cub structure
 
-static void	clean_up(t_fdf d)
+static void	clean_up(t_cub d)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ static void	clean_up(t_fdf d)
 	exit(0);
 }
 
-static void	init_data(t_fdf d)
+static void	init_data(t_cub d)
 {
 	d->w = 0;
 	d->h = 0;
@@ -54,7 +54,7 @@ static void	init_data(t_fdf d)
 
 static int	key_event(int button, void *param)
 {
-	t_fdf	d;
+	t_cub	d;
 
 	d = param;
 	if (button == 65307)
@@ -64,17 +64,17 @@ static int	key_event(int button, void *param)
 
 int	main(int argc, char **argv)
 {
-	t_fdf	d;
+	t_cub	d;
 
 	if (argc != 2)
-		ft_terror("Correct format: ./fdf map.fdf\n");
-	d = (t_fdf)malloc(sizeof(struct s_fdf));
+		ft_terror("Correct format: ./cub map.cub\n");
+	d = (t_cub)malloc(sizeof(struct s_cub));
 	if (!d)
 		ft_terror("Memory allocation failed\n");
 	init_data(d);
 	read_map(argv[1], d);
 	d->mlx = mlx_init();
-	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "FdF");
+	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "cub");
 	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
 	d->addr = mlx_get_data_addr(d->img, &(d->bits_per_pixel), &(d->line_length),
 			&(d->endian));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: igor <igor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 11:43:47 by igor              #+#    #+#             */
-/*   Updated: 2021/11/14 11:44:49 by igor             ###   ########.fr       */
+/*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
+/*   Updated: 2021/11/14 12:06:21 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "minilibx-linux/mlx_int.h"
 # include <math.h>
 
-typedef struct s_fdf
+typedef struct s_cub
 {
 	int		w;
 	int		h;
@@ -44,14 +44,6 @@ typedef struct s_fdf
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				*t_fdf;
-
-void	read_map(char *map, t_fdf d);
-void	draw_line(t_fdf d);
-void	put_pix(t_fdf d, int x, int y, int color);
-void	plot(t_fdf d);
-void	init_colors(t_fdf d);
-void	isometr(t_fdf d);
-void	reset_coord(t_fdf d);
+}				*t_cub;
 
 #endif
