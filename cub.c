@@ -6,13 +6,26 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/14 19:42:07 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/14 21:39:35 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
 // < d > stands for data table stored in s_cub structure
+
+static int	ft_checkarg(char *str)
+{
+	int		i;
+
+	i = ft_strlen(str);
+	if (i < 5)
+		return (1);
+	if (str[i - 1] != 'b' || str[i - 2] != 'u' || \
+		str[i - 3] != 'c' || str[i - 4] != '.')
+		return (1);
+	return (0);
+}
 
 static void	clean_up(t_cub d)
 {
@@ -60,8 +73,8 @@ int	main(int argc, char **argv)
 {
 	t_cub	d;
 
-	if (argc != 2)
-		ft_terror("Correct format: ./cub map.cub\n");
+	if (argc != 2 || ft_checkarg(argv[1]))
+		ft_terror("Error\nCorrect format: ./cub3D map.cub\n");
 	d = (t_cub)malloc(sizeof(struct s_cub));
 	if (!d)
 		ft_terror("Memory allocation failed\n");
