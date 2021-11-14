@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/14 12:08:10 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/14 19:42:07 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	clean_up(t_cub d)
 	int	i;
 
 	i = 0;
-	while (i < d->h)
-	{
-		free(d->a[i]);
-		free(d->c[i]);
-		i++;
-	}
-	free(d->a);
-	free(d->c);
+	// while (i < d->h)
+	// {
+	// 	free(d->a[i]);
+	// 	free(d->c[i]);
+	// 	i++;
+	// }
+	// free(d->a);
+	// free(d->c);
 	mlx_destroy_image(d->mlx, d->img);
 	mlx_destroy_window(d->mlx, d->win);
 	mlx_destroy_display(d->mlx);
@@ -37,19 +37,13 @@ static void	clean_up(t_cub d)
 
 static void	init_data(t_cub d)
 {
-	d->w = 0;
-	d->h = 0;
-	d->a = NULL;
-	d->c = NULL;
-	d->x = 0;
-	d->x1 = 0;
-	d->x2 = 0;
-	d->y = 0;
-	d->y1 = 0;
-	d->y2 = 0;
-	d->z = 0;
-	d->zoom = 0;
-	d->color = 0xFFFFFF;
+	d->nord_path = NULL;
+	d->south_path = NULL;
+	d->west_path = NULL;
+	d->east_path = NULL;
+	d->f_color[3] = NULL;
+	d->c_color[3] = NULL;
+	d->map = NULL;
 }
 
 static int	key_event(int button, void *param)
