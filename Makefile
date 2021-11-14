@@ -15,7 +15,7 @@ CFLAGS		= -Wall -Wextra -Werror -g
 
 RM			= rm -f
 
-NAME		= cub
+NAME		= cub3D
 
 LIB_PATH	= ./libft
 INCL_PATH	= ./libft
