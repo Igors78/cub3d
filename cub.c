@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/14 21:39:35 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:11:12 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	init_data(t_cub d)
 	d->f_color[3] = NULL;
 	d->c_color[3] = NULL;
 	d->map = NULL;
+	d->quant_par = 0;
 }
 
 static int	key_event(int button, void *param)
@@ -77,7 +78,7 @@ int	main(int argc, char **argv)
 		ft_terror("Error\nCorrect format: ./cub3D map.cub\n");
 	d = (t_cub)malloc(sizeof(struct s_cub));
 	if (!d)
-		ft_terror("Memory allocation failed\n");
+		ft_terror("Error\nMemory allocation failed\n");
 	init_data(d);
 	read_map(argv[1], d);
 	d->mlx = mlx_init();

@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/14 19:39:28 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:22:29 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define S 4
 # define W 5
 # define E 6
-# define SPRIT 7
 
 typedef struct s_cub
 {
@@ -37,6 +36,7 @@ typedef struct s_cub
 	int		f_color[3];
 	int		c_color[3];
 	int		**map;
+	int		quant_par;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -45,5 +45,7 @@ typedef struct s_cub
 	int		line_length;
 	int		endian;
 }				*t_cub;
+
+void	read_map(char *path, t_cub d);
 
 #endif
