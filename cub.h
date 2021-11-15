@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 16:16:50 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 19:42:37 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@
 
 typedef struct s_cub
 {
-	char	*nord_path;
-	char	*south_path;
-	char	*west_path;
-	char	*east_path;
 	int		f_color[3];
 	int		c_color[3];
 	int		**map;
@@ -44,9 +40,26 @@ typedef struct s_cub
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				*t_cub;
+	t_tex	no;
+	t_tex	so;
+	t_tex	we;
+	t_tex	ea;
+}			*t_cub;
 
-void	read_map(char *path, t_cub d);
+typedef struct s_tex
+{
+	void	*img;
+	int		img_w;
+	int		img_h;
+	char	*path;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_tex;
+
+void	read_config(char *path, t_cub d);
 void	parse_path(char **str, t_cub d);
+void	clean_up(t_cub d);
 
 #endif

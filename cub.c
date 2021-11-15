@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 11:11:12 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 20:40:39 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_checkarg(char *str)
 	return (0);
 }
 
-static void	clean_up(t_cub d)
+void	clean_up(t_cub d)
 {
 	int	i;
 
@@ -45,19 +45,23 @@ static void	clean_up(t_cub d)
 	mlx_destroy_display(d->mlx);
 	free(d->mlx);
 	free(d);
-	exit(0);
 }
 
 static void	init_data(t_cub d)
 {
-	d->nord_path = NULL;
-	d->south_path = NULL;
-	d->west_path = NULL;
-	d->east_path = NULL;
 	d->f_color[3] = NULL;
 	d->c_color[3] = NULL;
 	d->map = NULL;
 	d->quant_par = 0;
+	d->mlx = mlx_init();
+	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "cub");
+	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
+	d->addr = mlx_get_data_addr(d->img, &(d->bits_per_pixel), &(d->line_length),
+			&(d->endian));
+	d->no.img = NULL;
+	d->so.img = NULL;
+	d->we.img = NULL;
+	d->ea.img = NULL;
 }
 
 static int	key_event(int button, void *param)
@@ -80,12 +84,7 @@ int	main(int argc, char **argv)
 	if (!d)
 		ft_terror("Error\nMemory allocation failed\n");
 	init_data(d);
-	read_map(argv[1], d);
-	d->mlx = mlx_init();
-	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "cub");
-	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
-	d->addr = mlx_get_data_addr(d->img, &(d->bits_per_pixel), &(d->line_length),
-			&(d->endian));
+	read_config(argv[1], d);
 	plot(d);
 	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	mlx_key_hook(d->win, &key_event, d);

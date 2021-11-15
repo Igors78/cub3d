@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:29:48 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 16:31:49 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 19:08:59 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	parse_id(char **str, t_cub d)
 	else
 	{
 		ft_split_free(str);
-		free(d);
+		clean_up(d);
 		ft_terror("Error\nWrong parameter list");
 	}
 }
@@ -43,6 +43,7 @@ static void	parse_config(int fd, t_cub d)
 		if (gnl <= 0)
 		{
 			free(line);
+			clean_up(d);
 			ft_terror("Error\nNot valid map file");
 		}
 		if (line[0] == '\n' || line[0] == '\0')
@@ -59,14 +60,14 @@ static void	parse_config(int fd, t_cub d)
 	close(fd);
 }
 
-void	read_map(char *path, t_cub d)
+void	read_config(char *path, t_cub d)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 1)
 	{
-		free(d);
+		clean_up(d);
 		ft_terror("Error\nNot valid map file");
 	}
 	parse_config(fd, d);
