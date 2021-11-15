@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:29:48 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 11:50:07 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/15 16:31:49 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static void	parse_id(char **str, t_cub d)
 		parse_floor(str, d);
 	else if (ft_strcmp(str[0], "C") == 0 && ft_strlen(str[0] == 1))
 		parse_ceil(str, d);
+	else
+	{
+		ft_split_free(str);
+		free(d);
+		ft_terror("Error\nWrong parameter list");
+	}
 }
 
 static void	parse_config(int fd, t_cub d)
