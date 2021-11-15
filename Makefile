@@ -6,7 +6,7 @@
 #    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 18:24:26 by ioleinik          #+#    #+#              #
-#    Updated: 2021/11/15 16:15:28 by ioleinik         ###   ########.fr        #
+#    Updated: 2021/11/15 22:23:41 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ MINI_INCL	= ./minilibx-linux
 
 MAKE		= make
 
-SRC			= main.c parsing.c pars_path.c
+SRC			= main.c parsing.c pars_path.c pars_map.c
 
 OBJ			= ${SRC:.c=.o}
 
