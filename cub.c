@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 20:40:39 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/16 10:34:35 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,15 @@ static int	ft_checkarg(char *str)
 	return (0);
 }
 
-void	clean_up(t_cub d)
-{
-	int	i;
-
-	i = 0;
-	// while (i < d->h)
-	// {
-	// 	free(d->a[i]);
-	// 	free(d->c[i]);
-	// 	i++;
-	// }
-	// free(d->a);
-	// free(d->c);
-	mlx_destroy_image(d->mlx, d->img);
-	mlx_destroy_window(d->mlx, d->win);
-	mlx_destroy_display(d->mlx);
-	free(d->mlx);
-	free(d);
-}
-
 static void	init_data(t_cub d)
 {
 	d->f_color[3] = NULL;
 	d->c_color[3] = NULL;
 	d->map = NULL;
+	d->map_h = 0;
 	d->quant_par = 0;
+	d->flag = 0;
+	d->map_strings = ft_strarrnew();
 	d->mlx = mlx_init();
 	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "cub");
 	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);

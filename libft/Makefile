@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbarut <mbarut@student.42wolfsburg.de>     +#+  +:+       +#+         #
+#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/14 18:13:08 by ioleinik          #+#    #+#              #
-#    Updated: 2021/10/10 20:53:34 by mbarut           ###   ########.fr        #
+#    Updated: 2021/11/16 07:42:29 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC		= ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			ft_atoi_base.c \
 			ft_split_free.c ft_strcmp.c ft_strarrlen.c ft_strarrdup.c \
 			ft_addstrstrarr.c \
-			get_next_line.c
+			get_next_line.c ft_strarrnew.c
 
 OBJ		= ${SRC:.c=.o}
 
