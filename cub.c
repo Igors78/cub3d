@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 10:34:35 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:35:36 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void	init_data(t_cub d)
 	d->c_color[3] = NULL;
 	d->map = NULL;
 	d->map_h = 0;
+	d->map_w = 0;
 	d->quant_par = 0;
 	d->flag = 0;
 	d->map_strings = ft_strarrnew();

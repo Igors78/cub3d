@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 10:34:13 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/16 20:02:35 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_cub
 	char	**map_strings;
 	int		**map;
 	int		map_h;
+	int		map_w;
 	int		quant_par;
 	int		flag;
 	void	*mlx;
@@ -66,5 +67,8 @@ void	parse_path(char **str, t_cub d);
 void	clean_up(t_cub d);
 void	parse_map(int fd, t_cub d);
 void	inv_map(t_cub d);
+void	inv_color(t_cub d);
+void	parse_floor(char **arr, t_cub d);
+void	pars_doubles(char **arr, t_cub d);
 
 #endif

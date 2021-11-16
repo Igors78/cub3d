@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:29:48 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 19:08:59 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/16 20:02:44 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static void	parse_config(int fd, t_cub d)
 		ft_split_free(str);
 	}
 	parse_map(fd, d);
-	close(fd);
 }
 
 void	read_config(char *path, t_cub d)
@@ -71,4 +70,6 @@ void	read_config(char *path, t_cub d)
 		ft_terror("Error\nNot valid map file");
 	}
 	parse_config(fd, d);
+	close(fd);
+	pars_doubles(d->map_strings, d);
 }

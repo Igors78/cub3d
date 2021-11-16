@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:27:03 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 10:29:00 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:46:22 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void	inv_map(t_cub d)
 {
 	clean_up(d);
 	ft_terror("Error\nNot valid map");
+}
+
+void	inv_color(t_cub d)
+{
+	clean_up(d);
+	ft_terror("Error\nNot valid color specification");
 }
 
 void	clean_up(t_cub d)
