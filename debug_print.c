@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:29:24 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 15:18:51 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:34:34 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,11 @@ void	debug_print(t_cub *d)
 	{
 		printf("%s\n", d->map_strings[i]);
 		i++;
-	}	
+	}
+	printf("%d\n", d->f_color[0]);
+	printf("%d\n", d->f_color[1]);
+	printf("%d\n", d->f_color[2]);
+	printf("%d\n", d->c_color[0]);
+	printf("%d\n", d->c_color[1]);
+	printf("%d\n", d->c_color[2]);
 }

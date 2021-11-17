@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 11:54:01 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 15:40:53 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	main(int argc, char **argv)
 	// mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	// mlx_key_hook(d->win, &key_event, d);
 	// mlx_loop(d->mlx);
+	clean_up(&d);
 	return (0);
 }
