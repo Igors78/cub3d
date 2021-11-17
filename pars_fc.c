@@ -6,75 +6,100 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 11:24:25 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:14:46 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	check_colrange(char **arr, char *s, t_cub d)
+static void	check_colrange(char **arr, char *s, t_cub *d)
 {
-	int	i;
+	int		i;
+	int		k;
+	char	**col;
 
+	col = ft_split(s, ',');
 	i = 0;
-	while (s[i])
+	k = 0;
+	while (col[i])
 	{
-		if (!ft_isdigit(s[i]))
+		while (col[i][k])
 		{
-			ft_split_free(arr);
-			inv_color(d);
+			if (!ft_isdigit(s[i]))
+			{
+				ft_split_free(arr);
+				inv_color(d);
+			}
+			k++;
 		}
 		i++;
 	}
 }
 
-static void	fill_floorcolor(char **arr, char *s, t_cub d)
+static void	fill_floorcolor(char **arr, char *s, t_cub *d)
 {
 	static int	count;
 	int			value;
+	int			i;
+	char		**col;
 
+	col = ft_split(s, ',');
+	i = 0;
 	value = 0;
-	if (s[0] == '0' && s[1] == '\0')
+	while (col[i])
 	{
-		d->f_color[count++] = 0;
-		return ;
+		if (col[i][0] && col[i][1] && col[i][0] == '0' && col[i][1] == '\0')
+		{
+			d->f_color[count++] = 0;
+			return ;
+		}
+		if (col[i][0])
+			value = ft_atoi(col[i]);
+		if (value < 1 || value > 255 || count > 3)
+		{
+			ft_split_free(arr);
+			inv_color(d);
+		}
+		d->f_color[count++] = value;
+		i++;
 	}
-	value = ft_atoi(s);
-	if (value < 1 || value > 255 || count > 3)
-	{
-		ft_split_free(arr);
-		inv_color(d);
-	}
-	d->f_color[count++] = value;
 }
 
-static void	fill_ceilcolor(char **arr, char *s, t_cub d)
+static void	fill_ceilcolor(char **arr, char *s, t_cub *d)
 {
 	static int	count;
 	int			value;
+	int			i;
+	char		**col;
 
+	col = ft_split(s, ',');
+	i = 0;
 	value = 0;
-	if (s[0] == '0' && s[1] == '\0')
+	while (col[i])
 	{
-		d->c_color[count++] = 0;
-		return ;
+		if (col[i][0] && col[i][1] && col[i][0] == '0' && col[i][1] == '\0')
+		{
+			d->c_color[count++] = 0;
+			return ;
+		}
+		if (col[i][0])
+			value = ft_atoi(col[i]);
+		if (value < 1 || value > 255 || count > 3)
+		{
+			ft_split_free(arr);
+			inv_color(d);
+		}
+		d->c_color[count++] = value;
+		i++;
 	}
-	value = ft_atoi(s);
-	if (value < 1 || value > 255 || count > 3)
-	{
-		ft_split_free(arr);
-		inv_color(d);
-	}
-	d->c_color[count++] = value;
 }
 
-void	parse_floor(char **arr, t_cub d)
+void	parse_floor(char **arr, t_cub *d)
 {
 	int		i;
-	char	**col;
 
 	i = 1;
-	if (d->f_color || ft_strarrlen(arr) > 6)
+	if (ft_strarrlen(arr) > 6)
 	{
 		ft_split_free(arr);
 		inv_color(d);
@@ -93,13 +118,12 @@ void	parse_floor(char **arr, t_cub d)
 	}
 }
 
-void	parse_ceil(char **arr, t_cub d)
+void	parse_ceil(char **arr, t_cub *d)
 {
 	int		i;
-	char	**col;
 
 	i = 1;
-	if (d->f_color || ft_strarrlen(arr) > 6)
+	if (ft_strarrlen(arr) > 6)
 	{
 		ft_split_free(arr);
 		inv_color(d);

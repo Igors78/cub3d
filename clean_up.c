@@ -6,29 +6,29 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:27:03 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 15:46:22 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:16:24 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void	inv_map(t_cub d)
+void	inv_map(t_cub *d)
 {
 	clean_up(d);
 	ft_terror("Error\nNot valid map");
 }
 
-void	inv_color(t_cub d)
+void	inv_color(t_cub *d)
 {
 	clean_up(d);
 	ft_terror("Error\nNot valid color specification");
 }
 
-void	clean_up(t_cub d)
+void	clean_up(t_cub *d)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
+	// i = 0;
 	// while (i < d->h)
 	// {
 	// 	free(d->a[i]);
@@ -41,5 +41,4 @@ void	clean_up(t_cub d)
 	mlx_destroy_window(d->mlx, d->win);
 	mlx_destroy_display(d->mlx);
 	free(d->mlx);
-	free(d);
 }

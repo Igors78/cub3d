@@ -6,13 +6,13 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:15:30 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/15 20:55:02 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:58:26 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	nord_tex(char *s, t_cub d)
+static void	nord_tex(char *s, t_cub *d)
 {
 	if (d->no.img)
 	{
@@ -29,7 +29,7 @@ static void	nord_tex(char *s, t_cub d)
 			&d->no.line_length, &d->no.endian);
 }
 
-static void	south_tex(char *s, t_cub d)
+static void	south_tex(char *s, t_cub *d)
 {
 	if (d->so.img)
 	{
@@ -46,7 +46,7 @@ static void	south_tex(char *s, t_cub d)
 			&d->so.line_length, &d->so.endian);
 }
 
-static void	west_tex(char *s, t_cub d)
+static void	west_tex(char *s, t_cub *d)
 {
 	if (d->we.img)
 	{
@@ -63,7 +63,7 @@ static void	west_tex(char *s, t_cub d)
 			&d->we.line_length, &d->we.endian);
 }
 
-static void	east_tex(char *s, t_cub d)
+static void	east_tex(char *s, t_cub *d)
 {
 	if (d->ea.img)
 	{
@@ -80,18 +80,18 @@ static void	east_tex(char *s, t_cub d)
 			&d->ea.line_length, &d->ea.endian);
 }
 
-void	parse_path(char **str, t_cub d)
+void	parse_path(char **str, t_cub *d)
 {
 	if (ft_strarrlen(str) == 2)
 	{
 		d->quant_par++;
-		if (ft_strcmp(str[0], "NO") == 0 && ft_strlen(str[0] == 2))
+		if (ft_strcmp(str[0], "NO") == 0 && ft_strlen(str[0]) == 2)
 			nord_tex(str[1], d);
-		else if (ft_strcmp(str[0], "SO") == 0 && ft_strlen(str[0] == 2))
+		else if (ft_strcmp(str[0], "SO") == 0 && ft_strlen(str[0]) == 2)
 			south_tex(str[1], d);
-		else if (ft_strcmp(str[0], "WE") == 0 && ft_strlen(str[0] == 2))
+		else if (ft_strcmp(str[0], "WE") == 0 && ft_strlen(str[0]) == 2)
 			west_tex(str[1], d);
-		else if (ft_strcmp(str[0], "EA") == 0 && ft_strlen(str[0] == 2))
+		else if (ft_strcmp(str[0], "EA") == 0 && ft_strlen(str[0]) == 2)
 			east_tex(str[1], d);
 	}
 	else

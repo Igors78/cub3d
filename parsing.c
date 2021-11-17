@@ -6,22 +6,22 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:29:48 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 20:02:44 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:06:35 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-static void	parse_id(char **str, t_cub d)
+static void	parse_id(char **str, t_cub *d)
 {
-	if ((ft_strcmp(str[0], "NO") == 0 && ft_strlen(str[0] == 2))
-		|| (ft_strcmp(str[0], "SO") == 0 && ft_strlen(str[0] == 2))
-		|| (ft_strcmp(str[0], "WE") == 0 && ft_strlen(str[0] == 2))
-		|| (ft_strcmp(str[0], "EA") == 0 && ft_strlen(str[0] == 2)))
+	if ((ft_strcmp(str[0], "NO") == 0 && ft_strlen(str[0]) == 2)
+		|| (ft_strcmp(str[0], "SO") == 0 && ft_strlen(str[0]) == 2)
+		|| (ft_strcmp(str[0], "WE") == 0 && ft_strlen(str[0]) == 2)
+		|| (ft_strcmp(str[0], "EA") == 0 && ft_strlen(str[0]) == 2))
 		parse_path(str, d);
-	else if (ft_strcmp(str[0], "F") == 0 && ft_strlen(str[0] == 1))
+	else if (ft_strcmp(str[0], "F") == 0 && ft_strlen(str[0]) == 1)
 		parse_floor(str, d);
-	else if (ft_strcmp(str[0], "C") == 0 && ft_strlen(str[0] == 1))
+	else if (ft_strcmp(str[0], "C") == 0 && ft_strlen(str[0]) == 1)
 		parse_ceil(str, d);
 	else
 	{
@@ -31,7 +31,7 @@ static void	parse_id(char **str, t_cub d)
 	}
 }
 
-static void	parse_config(int fd, t_cub d)
+static void	parse_config(int fd, t_cub *d)
 {
 	char	*line;
 	char	**str;
@@ -59,7 +59,7 @@ static void	parse_config(int fd, t_cub d)
 	parse_map(fd, d);
 }
 
-void	read_config(char *path, t_cub d)
+void	read_config(char *path, t_cub *d)
 {
 	int	fd;
 
@@ -71,5 +71,5 @@ void	read_config(char *path, t_cub d)
 	}
 	parse_config(fd, d);
 	close(fd);
-	pars_doubles(d->map_strings, d);
+	parse_doubles(d->map_strings, d);
 }

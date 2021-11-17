@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 20:02:35 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:05:32 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 # define S 4
 # define W 5
 # define E 6
+
+typedef struct s_tex
+{
+	void	*img;
+	int		img_w;
+	int		img_h;
+	char	*path;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_tex;
 
 typedef struct s_cub
 {
@@ -48,27 +60,17 @@ typedef struct s_cub
 	t_tex	so;
 	t_tex	we;
 	t_tex	ea;
-}			*t_cub;
+}			t_cub;
 
-typedef struct s_tex
-{
-	void	*img;
-	int		img_w;
-	int		img_h;
-	char	*path;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_tex;
-
-void	read_config(char *path, t_cub d);
-void	parse_path(char **str, t_cub d);
-void	clean_up(t_cub d);
-void	parse_map(int fd, t_cub d);
-void	inv_map(t_cub d);
-void	inv_color(t_cub d);
-void	parse_floor(char **arr, t_cub d);
-void	pars_doubles(char **arr, t_cub d);
+void	read_config(char *path, t_cub *d);
+void	parse_path(char **str, t_cub *d);
+void	clean_up(t_cub *d);
+void	parse_map(int fd, t_cub *d);
+void	inv_map(t_cub *d);
+void	inv_color(t_cub *d);
+void	parse_floor(char **arr, t_cub *d);
+void	parse_ceil(char **arr, t_cub *d);
+void	parse_doubles(char **a, t_cub *d);
+void	debug_print(t_cub *d);
 
 #endif

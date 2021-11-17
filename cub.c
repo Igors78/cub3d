@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 17:35:36 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:54:01 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ static int	ft_checkarg(char *str)
 	return (0);
 }
 
-static void	init_data(t_cub d)
+static void	init_data(t_cub *d)
 {
-	d->f_color[3] = NULL;
-	d->c_color[3] = NULL;
 	d->map = NULL;
 	d->map_h = 0;
 	d->map_w = 0;
@@ -48,15 +46,15 @@ static void	init_data(t_cub d)
 	d->ea.img = NULL;
 }
 
-static int	key_event(int button, void *param)
-{
-	t_cub	d;
+// static int	key_event(int button, void *param)
+// {
+// 	t_cub	d;
 
-	d = param;
-	if (button == 65307)
-		clean_up(d);
-	return (0);
-}
+// 	d = param;
+// 	if (button == 65307)
+// 		clean_up(d);
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
@@ -64,14 +62,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || ft_checkarg(argv[1]))
 		ft_terror("Error\nCorrect format: ./cub3D map.cub\n");
-	d = (t_cub)malloc(sizeof(struct s_cub));
-	if (!d)
-		ft_terror("Error\nMemory allocation failed\n");
-	init_data(d);
-	read_config(argv[1], d);
-	plot(d);
-	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
-	mlx_key_hook(d->win, &key_event, d);
-	mlx_loop(d->mlx);
+	init_data(&d);
+	read_config(argv[1], &d);
+	debug_print(&d);
+	// mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
+	// mlx_key_hook(d->win, &key_event, d);
+	// mlx_loop(d->mlx);
 	return (0);
 }

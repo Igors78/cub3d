@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 22:23:43 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/16 17:36:57 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 11:51:12 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	line_symb(char *s)
 	return (0);
 }
 
-static void	line_map(char *s, t_cub d)
+static void	line_map(char *s, t_cub *d)
 {
 	char	**arr;
 	int		i;
@@ -47,7 +47,7 @@ static void	line_map(char *s, t_cub d)
 	ft_split_free(arr);
 }
 
-static void	map_deepcheck(t_cub d)
+static void	map_deepcheck(t_cub *d)
 {
 	int	w;
 	int	h;
@@ -75,7 +75,7 @@ static void	map_deepcheck(t_cub d)
 	}
 }
 
-static void	map_strarr(int fd, char *line, t_cub d)
+static void	map_strarr(int fd, char *line, t_cub *d)
 {
 	d->map_strings = ft_addstrstrarr(d->map_strings, line);
 	free(line);
@@ -103,7 +103,7 @@ static void	map_strarr(int fd, char *line, t_cub d)
 	map_deepcheck(d);
 }
 
-void	parse_map(int fd, t_cub d)
+void	parse_map(int fd, t_cub *d)
 {
 	char	*line;
 	int		gnl;
