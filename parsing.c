@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 18:29:48 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 12:06:35 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 21:22:23 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	parse_config(int fd, t_cub *d)
 	char	**str;
 	int		gnl;
 
+	line = NULL;
 	while (d->quant_par != 6)
 	{
 		gnl = get_next_line(fd, &line);

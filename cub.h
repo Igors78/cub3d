@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 12:05:32 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:38:43 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,7 @@ void	parse_floor(char **arr, t_cub *d);
 void	parse_ceil(char **arr, t_cub *d);
 void	parse_doubles(char **a, t_cub *d);
 void	debug_print(t_cub *d);
+void	exit_color(char **arr, char **col, t_cub *d);
+void	print_arr(char **arr);
 
 #endif
