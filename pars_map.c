@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 22:23:43 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 11:51:12 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 21:25:03 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ static void	map_strarr(int fd, char *line, t_cub *d)
 		if (line[0] == '\0')
 		{
 			d->flag = 1;
+			free(line);
 			continue ;
 		}
 		if (d->flag)
@@ -108,7 +109,6 @@ void	parse_map(int fd, t_cub *d)
 	char	*line;
 	int		gnl;
 
-	gnl = 0;
 	line = NULL;
 	gnl = get_next_line(fd, &line);
 	if (gnl <= 0)

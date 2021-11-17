@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 15:50:46 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:59:12 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	check_colrange(char **arr, char *s, t_cub *d)
 			if (!ft_isdigit(s[i]))
 			{
 				ft_split_free(arr);
+				ft_split_free(col);
 				inv_color(d);
 			}
 			k++;
@@ -58,11 +59,7 @@ static void	fill_floorcolor(char **arr, char *s, t_cub *d)
 		if (col[i][0])
 			value = ft_atoi(col[i]);
 		if (value < 1 || value > 255 || count > 3)
-		{
-			ft_split_free(arr);
-			ft_split_free(col);
-			inv_color(d);
-		}
+			exit_color(arr, col, d);
 		d->f_color[count++] = value;
 		i++;
 	}
@@ -89,11 +86,7 @@ static void	fill_ceilcolor(char **arr, char *s, t_cub *d)
 		if (col[i][0])
 			value = ft_atoi(col[i]);
 		if (value < 1 || value > 255 || count > 3)
-		{
-			ft_split_free(arr);
-			ft_split_free(col);
-			inv_color(d);
-		}
+			exit_color(arr, col, d);
 		d->c_color[count++] = value;
 		i++;
 	}
