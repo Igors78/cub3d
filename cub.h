@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 18:38:43 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 08:23:33 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_cub
 {
 	int		f_color[3];
 	int		c_color[3];
+	int		hex_floor;
+	int		hex_ceil;
 	char	**map_strings;
 	int		**map;
 	int		map_h;
@@ -73,6 +75,7 @@ void	parse_ceil(char **arr, t_cub *d);
 void	parse_doubles(char **a, t_cub *d);
 void	debug_print(t_cub *d);
 void	exit_color(char **arr, char **col, t_cub *d);
+void	fill_map_color(t_cub *d);
 void	print_arr(char **arr);
 
 #endif

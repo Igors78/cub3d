@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 15:40:53 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/17 22:05:34 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int argc, char **argv)
 		ft_terror("Error\nCorrect format: ./cub3D map.cub\n");
 	init_data(&d);
 	read_config(argv[1], &d);
+	fill_map_color(&d);
 	debug_print(&d);
 	// mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	// mlx_key_hook(d->win, &key_event, d);
