@@ -6,11 +6,40 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 22:05:51 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 08:34:47 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 09:16:34 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+static void	fill_field(t_cub *d)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	while (i < d->map_h)
+	{
+		k = 0;
+		while (k < (int)ft_strlen(d->map_strings[i]))
+		{
+			if (d->map_strings[i][k] == '0')
+				d->map[i][k] = 0;
+			if (d->map_strings[i][k] == '1')
+				d->map[i][k] = 1;
+			if (d->map_strings[i][k] == 'N')
+				d->map[i][k] = N;
+			if (d->map_strings[i][k] == 'S')
+				d->map[i][k] = S;
+			if (d->map_strings[i][k] == 'W')
+				d->map[i][k] = W;
+			if (d->map_strings[i][k] == 'E')
+				d->map[i][k] = E;
+			k++;
+		}
+		i++;
+	}
+}
 
 static void	prefill(t_cub *d)
 {
@@ -44,4 +73,5 @@ void	fill_map_color(t_cub *d)
 		i++;
 	}
 	prefill(d);
+	fill_field(d);
 }

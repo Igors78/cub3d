@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 11:29:24 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 08:35:48 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 08:42:43 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	debug_print(t_cub *d)
 
 	i = 0;
 	while (d->map_strings[i])
-	{
-		printf("%s\n", d->map_strings[i]);
-		i++;
-	}
+		printf("%s\n", d->map_strings[i++]);
 	printf("%X\n", d->hex_ceil);
 	printf("%X\n", d->hex_floor);
 	i = 0;
@@ -30,10 +27,7 @@ void	debug_print(t_cub *d)
 	{
 		k = 0;
 		while (k < d->map_w)
-		{
-			printf("%d", d->map[i][k]);
-			k++;
-		}
+			printf("%d", d->map[i][k++]);
 		printf("\n");
 		i++;
 	}
@@ -45,8 +39,5 @@ void	print_arr(char **arr)
 
 	i = 0;
 	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
+		printf("%s\n", arr[i++]);
 }
