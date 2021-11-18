@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 22:05:51 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 09:16:34 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:27:25 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static void	fill_field(t_cub *d)
 				d->map[i][k] = 0;
 			if (d->map_strings[i][k] == '1')
 				d->map[i][k] = 1;
-			if (d->map_strings[i][k] == 'N')
-				d->map[i][k] = N;
-			if (d->map_strings[i][k] == 'S')
-				d->map[i][k] = S;
-			if (d->map_strings[i][k] == 'W')
-				d->map[i][k] = W;
-			if (d->map_strings[i][k] == 'E')
-				d->map[i][k] = E;
+			if (d->map_strings[i][k] == 'N' || d->map_strings[i][k] == 'S'
+			|| d->map_strings[i][k] == 'W' || d->map_strings[i][k] == 'E')
+			{
+				d->g_player.start_dir = d->map[i][k];
+				d->map[i][k] = 0;
+				d->g_player.starty = i;
+				d->g_player.startx = k;
+			}
 			k++;
 		}
 		i++;

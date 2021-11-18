@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 08:23:33 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 20:11:12 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@
 # define W 5
 # define E 6
 
+typedef struct s_player
+{
+	int		posx;
+	int		posy;
+	float	o;
+	int		startx;
+	int		starty;
+	char	start_dir;
+}		t_player;
+
 typedef struct s_tex
 {
 	void	*img;
@@ -41,27 +51,28 @@ typedef struct s_tex
 
 typedef struct s_cub
 {
-	int		f_color[3];
-	int		c_color[3];
-	int		hex_floor;
-	int		hex_ceil;
-	char	**map_strings;
-	int		**map;
-	int		map_h;
-	int		map_w;
-	int		quant_par;
-	int		flag;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	t_tex	no;
-	t_tex	so;
-	t_tex	we;
-	t_tex	ea;
+	int			f_color[3];
+	int			c_color[3];
+	int			hex_floor;
+	int			hex_ceil;
+	char		**map_strings;
+	int			**map;
+	int			map_h;
+	int			map_w;
+	int			quant_par;
+	int			flag;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_tex		no;
+	t_tex		so;
+	t_tex		we;
+	t_tex		ea;
+	t_player	g_player;
 }			t_cub;
 
 void	read_config(char *path, t_cub *d);
