@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:27:03 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 17:01:26 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/18 08:24:04 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ void	clean_up(t_cub *d)
 			i++;
 		}
 		free(d->map_strings);
+	}
+	i = 0;
+	if (d->map)
+	{
+		while (i < d->map_h)
+		{
+			free(d->map[i]);
+			i++;
+		}
+		free(d->map);
 	}
 	if (d->no.img)
 		mlx_destroy_image(d->mlx, d->no.img);
