@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 13:44:04 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/19 15:58:18 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,7 +372,7 @@ float angle_change(int dir, float ang)
 
 void keys_AW(int key, t_cub *d)
 {
-	if (key == 0) //A
+	if (key == 115)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O - M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O - M_PI / 2);
@@ -382,7 +382,7 @@ void keys_AW(int key, t_cub *d)
 			d->g_player.posy += 10 * sin(d->g_player.O - M_PI / 2);
 		}
 	}
-	if (key == 13) // || key == 126) //W
+	if (key == 119)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O);
 		d->g_player.posy -= 10 * sin(d->g_player.O);
@@ -396,7 +396,7 @@ void keys_AW(int key, t_cub *d)
 
 void keys_DS(int key, t_cub *d)
 {
-	if (key == 2) //D
+	if (key == 100)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O + M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O + M_PI / 2);
@@ -406,7 +406,7 @@ void keys_DS(int key, t_cub *d)
 			d->g_player.posy += 10 * sin(d->g_player.O + M_PI / 2);
 		}
 	}
-	if (key == 1) // || key == 125) //S
+	if (key == 97)
 	{
 		d->g_player.posx += 10 * cos(d->g_player.O);
 		d->g_player.posy += 10 * sin(d->g_player.O);
@@ -417,21 +417,6 @@ void keys_DS(int key, t_cub *d)
 		}
 	}
 }
-
-// int	deal_key(int key, t_cub *d)
-// {
-// 	// printf("Key: %d\n", key);
-// 	if (key == 53) //65307)
-// 		exit(0);
-// 	keys_AW(key, d);
-// 	keys_DS(key, d);
-// 	if (key == 123) //65361)
-// 		d->g_player.O = angle_change(0, d->g_player.O);
-// 	if (key == 124) //65363)
-// 		d->g_player.O = angle_change(1, d->g_player.O);
-// 	cast_rays(0, 0, 0, 0);
-// 	return (0);
-// }
 
 void coord_to_pixel(t_cub *d)
 {
@@ -483,7 +468,8 @@ static int key_event(int button, void *param)
 	mlx_destroy_image(d->mlx, d->img);
 	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
 	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
-	cast_rays(0, 0, 0, 0);
+	cast_rays(0, 0, 0, d);
+	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
 	return (0);
 }
 
@@ -541,7 +527,7 @@ int main(int argc, char **argv)
 	d.g_player.O = spawn_angle(d.g_player.start_dir);
 	cast_rays(0, 0, 0, &d);
 	mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
-	mlx_key_hook(d.win, &key_event, &d);
+	mlx_hook(d.win, 2, 1L << 0, &key_event, &d);
 	mlx_loop(d.mlx);
 
 	clean_up(&d);
