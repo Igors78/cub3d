@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 20:11:12 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/19 01:52:41 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
+// # include "minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # define MAX_X 800
 # define MAX_Y 570
@@ -31,7 +32,7 @@ typedef struct s_player
 {
 	int		posx;
 	int		posy;
-	float	o;
+	float	O;
 	int		startx;
 	int		starty;
 	char	start_dir;

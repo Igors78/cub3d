@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:27:03 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 08:24:04 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/19 00:29:58 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	clean_up(t_cub *d)
 	if (d->img)
 		mlx_destroy_image(d->mlx, d->img);
 	mlx_destroy_window(d->mlx, d->win);
-	mlx_destroy_display(d->mlx);
+	// mlx_destroy_display(d->mlx);
 	free(d->mlx);
 }
