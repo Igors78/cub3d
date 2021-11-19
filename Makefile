@@ -6,7 +6,7 @@
 #    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/17 18:24:26 by ioleinik          #+#    #+#              #
-#    Updated: 2021/11/17 22:06:07 by ioleinik         ###   ########.fr        #
+#    Updated: 2021/11/19 10:06:38 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MINI_INCL	= ./minilibx-linux
 MAKE		= make
 
 SRC			= cub.c parsing.c pars_path.c pars_map.c clean_up.c pars_fc.c \
-				pars_doubles.c debug_print.c fill.c
+				pars_doubles.c debug_print.c fill.c init_graphics.c
 
 OBJ			= ${SRC:.c=.o}
 
