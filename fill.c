@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 22:05:51 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/18 20:27:25 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/19 02:04:22 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	fill_field(t_cub *d)
 			if (d->map_strings[i][k] == 'N' || d->map_strings[i][k] == 'S'
 			|| d->map_strings[i][k] == 'W' || d->map_strings[i][k] == 'E')
 			{
-				d->g_player.start_dir = d->map[i][k];
+				d->g_player.start_dir = d->map_strings[i][k];
 				d->map[i][k] = 0;
 				d->g_player.starty = i;
 				d->g_player.startx = k;
