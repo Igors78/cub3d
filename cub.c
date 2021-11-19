@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 11:28:21 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:44:04 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -472,8 +472,18 @@ static int key_event(int button, void *param)
 	if (button == 65307)
 	{
 		clean_up(d);
-		exit (0);
+		exit(0);
 	}
+	keys_AW(button, d);
+	keys_DS(button, d);
+	if (button == 65361)
+		d->g_player.O = angle_change(0, d->g_player.O);
+	if (button == 65363)
+		d->g_player.O = angle_change(1, d->g_player.O);
+	mlx_destroy_image(d->mlx, d->img);
+	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
+	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
+	cast_rays(0, 0, 0, 0);
 	return (0);
 }
 
