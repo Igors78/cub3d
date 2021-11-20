@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/20 17:49:48 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/20 22:25:43 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,23 +265,27 @@ int which_wall(int dists_fov[250][2], int i, int j, t_cub *d)
 	wall = 0x000000;
 	if (dists_fov[i / 2][1] == 1)
 	{
-		wall = (*(int*)(d->no.addr + ((i +
-			(j * d->no.img_w)) * (d->no.bits_per_pixel / 8))));
+		wall = (*(int *)(d->no.addr + ((i +
+										(j * d->no.img_w)) *
+									   (d->no.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 2)
 	{
-		wall = (*(int*)(d->so.addr + ((i +
-			(j * d->so.img_w)) * (d->so.bits_per_pixel / 8))));
+		wall = (*(int *)(d->so.addr + ((i +
+										(j * d->so.img_w)) *
+									   (d->so.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 3)
 	{
-		wall = (*(int*)(d->we.addr + ((i +
-			(j * d->we.img_w)) * (d->we.bits_per_pixel / 8))));
+		wall = (*(int *)(d->we.addr + ((i +
+										(j * d->we.img_w)) *
+									   (d->we.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 4)
 	{
-		wall = (*(int*)(d->ea.addr + ((i +
-			(j * d->ea.img_w)) * (d->ea.bits_per_pixel / 8))));
+		wall = (*(int *)(d->ea.addr + ((i +
+										(j * d->ea.img_w)) *
+									   (d->ea.bits_per_pixel / 8))));
 	}
 	return (wall);
 }
@@ -381,21 +385,25 @@ float angle_change(int dir, float ang)
 
 void keys_AW(int key, t_cub *d)
 {
-	if (key == 115)
+	if (key == 115 || key == 0)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O - M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O - M_PI / 2);
-		if (d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
+		if (d->g_player.posy / 100 <= 0 || d->g_player.posy / 100 >= d->map_h - 1
+		|| d->g_player.posx / 100 <= 0 || d->g_player.posx / 100 >= d->map_w - 1
+		|| d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
 		{
 			d->g_player.posx += 10 * cos(d->g_player.O - M_PI / 2);
 			d->g_player.posy += 10 * sin(d->g_player.O - M_PI / 2);
 		}
 	}
-	if (key == 119)
+	if (key == 119 || key == 13)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O);
 		d->g_player.posy -= 10 * sin(d->g_player.O);
-		if (d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
+		if (d->g_player.posy / 100 <= 0 || d->g_player.posy / 100 >= d->map_h - 1
+		|| d->g_player.posx / 100 <= 0 || d->g_player.posx / 100 >= d->map_w - 1
+		|| d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
 		{
 			d->g_player.posx += 10 * cos(d->g_player.O);
 			d->g_player.posy += 10 * sin(d->g_player.O);
@@ -405,28 +413,31 @@ void keys_AW(int key, t_cub *d)
 
 void keys_DS(int key, t_cub *d)
 {
-	if (key == 100)
+	if (key == 100 || key == 2)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O + M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O + M_PI / 2);
-		if (d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
+		if (d->g_player.posy / 100 <= 0 || d->g_player.posy / 100 >= d->map_h - 1
+		|| d->g_player.posx / 100 <= 0 || d->g_player.posx / 100 >= d->map_w - 1
+		|| d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
 		{
 			d->g_player.posx += 10 * cos(d->g_player.O + M_PI / 2);
 			d->g_player.posy += 10 * sin(d->g_player.O + M_PI / 2);
 		}
 	}
-	if (key == 97)
+	if (key == 97 || key == 1)
 	{
 		d->g_player.posx += 10 * cos(d->g_player.O);
 		d->g_player.posy += 10 * sin(d->g_player.O);
-		if (d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
+		if (d->g_player.posy / 100 <= 0 || d->g_player.posy / 100 >= d->map_h - 1
+		|| d->g_player.posx / 100 <= 0 || d->g_player.posx / 100 >= d->map_w - 1
+		|| d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
 		{
 			d->g_player.posx -= 10 * cos(d->g_player.O);
 			d->g_player.posy -= 10 * sin(d->g_player.O);
 		}
 	}
 }
-
 void coord_to_pixel(t_cub *d)
 {
 	d->g_player.posx = (d->g_player.startx * 100) + 50;
