@@ -3,24 +3,23 @@ C 255,   200   ,    160
 
 F  122 , 122 , 122
 
-NO ./pics/redbrick.xpm
+NO ./textures/wall.xpm
 
-SO ./pics/greystone.xpm
+SO ./textures/wall2.xpm
 
-WE ./pics/wood.xpm
+WE ./textures/wall3.xpm
 
-EA ./pics/bluestone.xpm
+EA ./textures/wall4.xpm
 
 
 
 11111111
 10000001
-10100001
-10000001
-1000W001
-10000101
+10100011
+10100011
+1010N011
+10100101
 10000101
 11111111
-
 
 

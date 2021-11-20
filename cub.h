@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 01:52:41 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/19 10:51:42 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,13 @@
 
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
-// # include "minilibx-linux/mlx_int.h"
+# include "minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
 
-# define MAX_X 800
-# define MAX_Y 570
-# define EMPTY 2
-# define N 3
-# define S 4
-# define W 5
-# define E 6
+# define MAX_X 500
+# define MAX_Y 500
 
 typedef struct s_player
 {
@@ -89,5 +84,7 @@ void	debug_print(t_cub *d);
 void	exit_color(char **arr, char **col, t_cub *d);
 void	fill_map_color(t_cub *d);
 void	print_arr(char **arr);
+void	init_graphics(t_cub *d);
+void	put_pix(t_cub *d, int x, int y, int color);
 
 #endif

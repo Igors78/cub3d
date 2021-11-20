@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 01:57:48 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/20 17:49:48 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-t_cub *d;
 
 #define WWALL 0xff0000
 #define NWALL 0x00ff00
@@ -21,65 +19,21 @@ t_cub *d;
 
 // < d > stands for data table stored in s_cub structure
 
-static int	ft_checkarg(char *str)
-{
-	int		i;
-
-	i = ft_strlen(str);
-	if (i < 5)
-		return (1);
-	if (str[i - 1] != 'b' || str[i - 2] != 'u' || \
-		str[i - 3] != 'c' || str[i - 4] != '.')
-		return (1);
-	return (0);
-}
-
-static void	init_data(t_cub *d)
-{
-	d->map = NULL;
-	d->map_h = 0;
-	d->map_w = 0;
-	d->quant_par = 0;
-	d->flag = 0;
-	d->map_strings = ft_strarrnew();
-	d->mlx = mlx_init();
-	d->win = mlx_new_window(d->mlx, MAX_X, MAX_Y, "cub");
-	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
-	d->addr = mlx_get_data_addr(d->img, &(d->bits_per_pixel), &(d->line_length),
-			&(d->endian));
-	d->no.img = NULL;
-	d->so.img = NULL;
-	d->we.img = NULL;
-	d->ea.img = NULL;
-	d->g_player.startx = 0;
-	d->g_player.starty = 0;
-}
-
-// static int	key_event(int button, void *param)
-// {
-// 	t_cub	d;
-
-// 	d = param;
-// 	if (button == 65307)
-// 		clean_up(d);
-// 	return (0);
-// }
-
-int	max(int a, int b)
+int max(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-int	min(int a, int b)
+int min(int a, int b)
 {
 	if (a > b)
 		return (b);
 	return (a);
 }
 
-float	check_limits(float O)
+float check_limits(float O)
 {
 	if (O < 0)
 		O += (2 * M_PI);
@@ -88,16 +42,16 @@ float	check_limits(float O)
 	return (O);
 }
 
-int	xdist_quad1(float O, int x, int y)
+int xdist_quad1(float O, int x, int y, t_cub *d)
 {
-	int	x_dist;
-	int	dx;
-	int	dy;
+	int x_dist;
+	int dx;
+	int dy;
 
 	x_dist = 20000 * max(d->map_w, d->map_h);
 	dx = (d->g_player.posx % 100); //x goes to nearest line on left
-	dy = dx * tan(O); //diff in y depends on angle
-	x = d->g_player.posx - dx; //x and y are the positions of the ray when intersecting a vertical line
+	dy = dx * tan(O);			   //diff in y depends on angle
+	x = d->g_player.posx - dx;	   //x and y are the positions of the ray when intersecting a vertical line
 	y = d->g_player.posy - dy;
 	while (x > 0 && x < (d->map_w * 100) && y > 0 && y < (d->map_h * 100))
 	{
@@ -106,7 +60,7 @@ int	xdist_quad1(float O, int x, int y)
 			x_dist = dx / cos(O); //length of the ray
 			if (O < 0.02)
 				x_dist = dx;
-			break ;
+			break;
 		}
 		dx += 100; //if grid value of block is 0 (empty space), keep going to the next vertical line until intersection with grid value 1 found
 		dy = dx * tan(O);
@@ -116,11 +70,11 @@ int	xdist_quad1(float O, int x, int y)
 	return (x_dist);
 }
 
-int	ydist_quad1(float O, int x, int y)
+int ydist_quad1(float O, int x, int y, t_cub *d)
 {
-	int	y_dist;
-	int	dx;
-	int	dy;
+	int y_dist;
+	int dx;
+	int dy;
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = d->g_player.posy % 100;
@@ -132,7 +86,7 @@ int	ydist_quad1(float O, int x, int y)
 		if (d->map[(y - 1) / 100][((x - 1) / 100)] == 1)
 		{
 			y_dist = dy / sin(O);
-			break ;
+			break;
 		}
 		dy += 100;
 		dx = dy / tan(O);
@@ -142,11 +96,11 @@ int	ydist_quad1(float O, int x, int y)
 	return (y_dist);
 }
 
-int	xdist_quad2(float O, int x, int y)
+int xdist_quad2(float O, int x, int y, t_cub *d)
 {
-	int	x_dist;
-	int	dx;
-	int	dy;
+	int x_dist;
+	int dx;
+	int dy;
 
 	x_dist = 20000 * max(d->map_w, d->map_h);
 	dx = 100 - (d->g_player.posx % 100);
@@ -160,7 +114,7 @@ int	xdist_quad2(float O, int x, int y)
 			x_dist = dy / sin(M_PI - O);
 			if (O > M_PI - 0.02)
 				x_dist = dx;
-			break ;
+			break;
 		}
 		dx += 100;
 		dy = dx * tan(M_PI - O);
@@ -170,11 +124,11 @@ int	xdist_quad2(float O, int x, int y)
 	return (x_dist);
 }
 
-int	ydist_quad2(float O, int x, int y)
+int ydist_quad2(float O, int x, int y, t_cub *d)
 {
-	int	y_dist;
-	int	dx;
-	int	dy;
+	int y_dist;
+	int dx;
+	int dy;
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = d->g_player.posy % 100;
@@ -186,7 +140,7 @@ int	ydist_quad2(float O, int x, int y)
 		if (d->map[(y - 1) / 100][x / 100] == 1)
 		{
 			y_dist = dy / sin(M_PI - O);
-			break ;
+			break;
 		}
 		dy += 100;
 		dx = dy / tan(M_PI - O);
@@ -196,11 +150,11 @@ int	ydist_quad2(float O, int x, int y)
 	return (y_dist);
 }
 
-int	xdist_quad3(float O, int x, int y)
+int xdist_quad3(float O, int x, int y, t_cub *d)
 {
-	int	x_dist;
-	int	dx;
-	int	dy;
+	int x_dist;
+	int dx;
+	int dy;
 
 	x_dist = 20000 * max(d->map_w, d->map_h);
 	dx = 100 - (d->g_player.posx % 100);
@@ -214,7 +168,7 @@ int	xdist_quad3(float O, int x, int y)
 			x_dist = dx / cos(O - M_PI);
 			if (O < M_PI + 0.02)
 				x_dist = dx;
-			break ;
+			break;
 		}
 		dx += 100;
 		dy = dx * tan(O - M_PI);
@@ -224,11 +178,11 @@ int	xdist_quad3(float O, int x, int y)
 	return (x_dist);
 }
 
-int	ydist_quad3(float O, int x, int y)
+int ydist_quad3(float O, int x, int y, t_cub *d)
 {
-	int	y_dist;
-	int	dx;
-	int	dy;
+	int y_dist;
+	int dx;
+	int dy;
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = 100 - (d->g_player.posy % 100);
@@ -240,7 +194,7 @@ int	ydist_quad3(float O, int x, int y)
 		if (d->map[(y + 1) / 100][x / 100] == 1)
 		{
 			y_dist = dy / sin(O - M_PI);
-			break ;
+			break;
 		}
 		dy += 100;
 		dx = dy / tan(O - M_PI);
@@ -250,11 +204,11 @@ int	ydist_quad3(float O, int x, int y)
 	return (y_dist);
 }
 
-int	xdist_quad4(float O, int x, int y)
+int xdist_quad4(float O, int x, int y, t_cub *d)
 {
-	int	x_dist;
-	int	dx;
-	int	dy;
+	int x_dist;
+	int dx;
+	int dy;
 
 	x_dist = 20000 * max(d->map_w, d->map_h);
 	dx = (d->g_player.posx % 100);
@@ -268,7 +222,7 @@ int	xdist_quad4(float O, int x, int y)
 			x_dist = dy / sin((2 * M_PI) - O);
 			if (O > 2 * M_PI - 0.02)
 				x_dist = dx;
-			break ;
+			break;
 		}
 		dx += 100;
 		dy = dx * tan((2 * M_PI) - O);
@@ -278,11 +232,11 @@ int	xdist_quad4(float O, int x, int y)
 	return (x_dist);
 }
 
-int	ydist_quad4(float O, int x, int y)
+int ydist_quad4(float O, int x, int y, t_cub *d)
 {
-	int	y_dist;
-	int	dx;
-	int	dy;
+	int y_dist;
+	int dx;
+	int dy;
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = 100 - (d->g_player.posy % 100);
@@ -294,7 +248,7 @@ int	ydist_quad4(float O, int x, int y)
 		if (d->map[(y) / 100][(x - 1) / 100] == 1)
 		{
 			y_dist = dy / sin((2 * M_PI) - O);
-			break ;
+			break;
 		}
 		dy += 100;
 		dx = dy / tan((2 * M_PI) - O);
@@ -304,27 +258,38 @@ int	ydist_quad4(float O, int x, int y)
 	return (y_dist);
 }
 
-
-int	which_wall(int dists_fov[250][2], int i)
+int which_wall(int dists_fov[250][2], int i, int j, t_cub *d)
 {
-	int	wall;
+	int wall;
 
 	wall = 0x000000;
 	if (dists_fov[i / 2][1] == 1)
-		wall = WWALL;
+	{
+		wall = (*(int*)(d->no.addr + ((i +
+			(j * d->no.img_w)) * (d->no.bits_per_pixel / 8))));
+	}
 	else if (dists_fov[i / 2][1] == 2)
-		wall = NWALL;
+	{
+		wall = (*(int*)(d->so.addr + ((i +
+			(j * d->so.img_w)) * (d->so.bits_per_pixel / 8))));
+	}
 	else if (dists_fov[i / 2][1] == 3)
-		wall = EWALL;
+	{
+		wall = (*(int*)(d->we.addr + ((i +
+			(j * d->we.img_w)) * (d->we.bits_per_pixel / 8))));
+	}
 	else if (dists_fov[i / 2][1] == 4)
-		wall = SWALL;
+	{
+		wall = (*(int*)(d->ea.addr + ((i +
+			(j * d->ea.img_w)) * (d->ea.bits_per_pixel / 8))));
+	}
 	return (wall);
 }
 
-void	paint_screen(int dists_fov[250][2], int i, t_cub *d)
+void paint_screen(int dists_fov[250][2], int i, t_cub *d)
 {
-	int	j;
-	int	wall;
+	int j;
+	int wall;
 
 	i = 0;
 	while (i < 500)
@@ -332,58 +297,58 @@ void	paint_screen(int dists_fov[250][2], int i, t_cub *d)
 		j = 0;
 		while (j < (250 - (dists_fov[i / 2][0] / 2)))
 		{
-			mlx_pixel_put(d->mlx, d->win, i, j, d->hex_ceil);
+			put_pix(d, i, j, d->hex_ceil);
 			j++;
 		}
 		while (j < (250 + (dists_fov[i / 2][0] / 2)) && j < 500)
 		{
-			wall = which_wall(dists_fov, i);
-			mlx_pixel_put(d->mlx, d->win, i, j, wall);
+			wall = which_wall(dists_fov, i, j, d);
+			put_pix(d, i, j, wall);
 			j++;
 		}
 		while (j < 500)
 		{
-			mlx_pixel_put(d->mlx, d->win, i, j, d->hex_floor);
+			put_pix(d, i, j, d->hex_floor);
 			j++;
 		}
 		i++;
 	}
 }
 
-int	set_dists_wall(int *x_dist, int *y_dist, int wall, float O)
+int set_dists_wall(int *x_dist, int *y_dist, int wall, float O, t_cub *d)
 {
 	if (O >= 0 && O < M_PI / 2)
 	{
-		*x_dist = xdist_quad1(O, 0, 0);
-		*y_dist = ydist_quad1(O, 0, 0);
+		*x_dist = xdist_quad1(O, 0, 0, d);
+		*y_dist = ydist_quad1(O, 0, 0, d);
 		wall = (*x_dist > *y_dist ? 4 : 3);
 	}
 	else if (O >= M_PI / 2 && O < M_PI)
 	{
-		*x_dist = xdist_quad2(O, 0, 0);
-		*y_dist = ydist_quad2(O, 0, 0);
+		*x_dist = xdist_quad2(O, 0, 0, d);
+		*y_dist = ydist_quad2(O, 0, 0, d);
 		wall = (*x_dist > *y_dist ? 4 : 1);
 	}
 	else if (O >= M_PI && O < 3 * M_PI / 2)
 	{
-		*x_dist = xdist_quad3(O, 0, 0);
-		*y_dist = ydist_quad3(O, 0, 0);
+		*x_dist = xdist_quad3(O, 0, 0, d);
+		*y_dist = ydist_quad3(O, 0, 0, d);
 		wall = (*x_dist > *y_dist ? 2 : 1);
 	}
 	else if (O >= 3 * M_PI / 2 && O < 2 * M_PI)
 	{
-		*x_dist = xdist_quad4(O, 0, 0);
-		*y_dist = ydist_quad4(O, 0, 0);
+		*x_dist = xdist_quad4(O, 0, 0, d);
+		*y_dist = ydist_quad4(O, 0, 0, d);
 		wall = (*x_dist > *y_dist ? 2 : 3);
 	}
 	return (wall);
 }
 
-int	cast_rays(int x_dist, int y_dist, int mindist, t_cub *d)
+int cast_rays(int x_dist, int y_dist, int mindist, t_cub *d)
 {
-	int		wall; //W=1, N=2, E=3, S=4;
-	int		dists_fov[250][2];
-	float	O;
+	int wall; //W=1, N=2, E=3, S=4;
+	int dists_fov[250][2];
+	float O;
 	int i;
 
 	i = -1;
@@ -391,7 +356,7 @@ int	cast_rays(int x_dist, int y_dist, int mindist, t_cub *d)
 	while (++i < 250)
 	{
 		O = check_limits(O);
-		wall = set_dists_wall(&x_dist, &y_dist, wall, O);
+		wall = set_dists_wall(&x_dist, &y_dist, wall, O, d);
 		mindist = min(x_dist, y_dist);
 		dists_fov[i][0] = 50000 / (mindist * cos(fabsf(d->g_player.O - O)));
 		dists_fov[i][1] = wall;
@@ -401,7 +366,7 @@ int	cast_rays(int x_dist, int y_dist, int mindist, t_cub *d)
 	return (1);
 }
 
-float	angle_change(int dir, float ang)
+float angle_change(int dir, float ang)
 {
 	if (dir == 0)
 		ang -= 0.1;
@@ -414,9 +379,9 @@ float	angle_change(int dir, float ang)
 	return (ang);
 }
 
-void	keys_AW(int key, t_cub *d)
+void keys_AW(int key, t_cub *d)
 {
-	if (key == 0) //A
+	if (key == 115)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O - M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O - M_PI / 2);
@@ -426,7 +391,7 @@ void	keys_AW(int key, t_cub *d)
 			d->g_player.posy += 10 * sin(d->g_player.O - M_PI / 2);
 		}
 	}
-	if (key == 13) // || key == 126) //W
+	if (key == 119)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O);
 		d->g_player.posy -= 10 * sin(d->g_player.O);
@@ -438,19 +403,19 @@ void	keys_AW(int key, t_cub *d)
 	}
 }
 
-void	keys_DS(int key, t_cub *d)
+void keys_DS(int key, t_cub *d)
 {
-	if (key == 2) //D
+	if (key == 100)
 	{
 		d->g_player.posx -= 10 * cos(d->g_player.O + M_PI / 2);
 		d->g_player.posy -= 10 * sin(d->g_player.O + M_PI / 2);
 		if (d->map[(d->g_player.posy / 100)][d->g_player.posx / 100] == 1)
 		{
-			d->g_player.posx += 10 * cos(d->g_player.O  + M_PI / 2);
-			d->g_player.posy += 10 * sin(d->g_player.O  + M_PI / 2);
+			d->g_player.posx += 10 * cos(d->g_player.O + M_PI / 2);
+			d->g_player.posy += 10 * sin(d->g_player.O + M_PI / 2);
 		}
 	}
-	if (key == 1) // || key == 125) //S
+	if (key == 97)
 	{
 		d->g_player.posx += 10 * cos(d->g_player.O);
 		d->g_player.posy += 10 * sin(d->g_player.O);
@@ -462,75 +427,114 @@ void	keys_DS(int key, t_cub *d)
 	}
 }
 
-int	deal_key(int key, t_cub *d)
-{
-	// printf("Key: %d\n", key);
-	if (key == 53) //65307)
-		exit(0);
-	keys_AW(key, d);
-	keys_DS(key, d);
-	if (key == 123) //65361)
-		d->g_player.O = angle_change(0, d->g_player.O);
-	if (key == 124) //65363)
-		d->g_player.O = angle_change(1, d->g_player.O);
-	cast_rays(0, 0, 0, 0);
-	return (0);
-}
-
-void	coord_to_pixel(t_cub *d)
+void coord_to_pixel(t_cub *d)
 {
 	d->g_player.posx = (d->g_player.startx * 100) + 50;
 	d->g_player.posy = (d->g_player.starty * 100) + 50;
 }
 
-float	spawn_angle(char dir)
+float spawn_angle(char dir)
 {
-	if (dir == 'W') {
+	if (dir == 'W')
+	{
 		printf("0.0001\n"); //for debugging
-		return (0.0001);}
-	else if (dir == 'N') {
-		printf("%f\n", M_PI/2);
-		return (M_PI / 2);}
-	else if (dir == 'E') {
+		return (0.0001);
+	}
+	else if (dir == 'N')
+	{
+		printf("%f\n", M_PI / 2);
+		return (M_PI / 2);
+	}
+	else if (dir == 'E')
+	{
 		printf("%f\n", M_PI);
-		return (M_PI);}
-	else if (dir == 'S') {
-		printf("%f\n", 3*M_PI/2);
-		return (3 * M_PI /2);}
+		return (M_PI);
+	}
+	else if (dir == 'S')
+	{
+		printf("%f\n", 3 * M_PI / 2);
+		return (3 * M_PI / 2);
+	}
 	return (-1);
 }
 
-void main2(t_cub *d)
+static int key_event(int button, void *param)
 {
-	coord_to_pixel(d);
-	printf("%c\n", d->g_player.start_dir); //prints nothing
-	d->g_player.O = spawn_angle(d->g_player.start_dir);
-	printf("%f\n", d->g_player.O); //default set to -1?
-	d->mlx = mlx_init();
-	d->win = mlx_new_window(d->mlx, 500, 500, "cub3d");
+	t_cub *d;
+
+	d = param;
+	if (button == 65307)
+	{
+		clean_up(d);
+		exit(0);
+	}
+	keys_AW(button, d);
+	keys_DS(button, d);
+	if (button == 65361)
+		d->g_player.O = angle_change(0, d->g_player.O);
+	if (button == 65363)
+		d->g_player.O = angle_change(1, d->g_player.O);
+	mlx_destroy_image(d->mlx, d->img);
+	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
+	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
 	cast_rays(0, 0, 0, d);
-	mlx_key_hook(d->win, deal_key, d);
-	mlx_loop(d->mlx);
+	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
+	return (0);
 }
 
-int	main(int argc, char **argv)
+void put_pix(t_cub *d, int x, int y, int color)
 {
-	// t_cub	d;
-	d = malloc(sizeof(t_cub));
+	char *dst;
+
+	dst = d->addr + (y * d->line_length + x * (d->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+static int ft_checkarg(char *str)
+{
+	int i;
+
+	i = ft_strlen(str);
+	if (i < 5)
+		return (1);
+	if (str[i - 1] != 'b' || str[i - 2] != 'u' ||
+		str[i - 3] != 'c' || str[i - 4] != '.')
+		return (1);
+	return (0);
+}
+
+static void init_data(t_cub *d)
+{
+	d->map = NULL;
+	d->map_h = 0;
+	d->map_w = 0;
+	d->quant_par = 0;
+	d->flag = 0;
+	d->map_strings = ft_strarrnew();
+	d->img = NULL;
+	d->win = NULL;
+	d->g_player.startx = 0;
+	d->g_player.starty = 0;
+}
+
+int main(int argc, char **argv)
+{
+	t_cub d;
 
 	if (argc != 2 || ft_checkarg(argv[1]))
 		ft_terror("Error\nCorrect format: ./cub3D map.cub\n");
-	init_data(d);
-	read_config(argv[1], d);
-	fill_map_color(d);
-	debug_print(d);
-	// mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
-	// mlx_key_hook(d->win, &key_event, d);
-	// mlx_loop(d->mlx);
+	init_data(&d);
+	init_graphics(&d);
+	read_config(argv[1], &d);
+	fill_map_color(&d);
+	debug_print(&d);
+	coord_to_pixel(&d);
+	d.g_player.O = spawn_angle(d.g_player.start_dir);
+	cast_rays(0, 0, 0, &d);
+	mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
+	mlx_hook(d.win, 2, 1L << 0, &key_event, &d);
+	mlx_loop(d.mlx);
 
-
-	main2(d);
-
-	clean_up(d);
+	clean_up(&d);
 	return (0);
 }
