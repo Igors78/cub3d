@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 17:00:08 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/20 17:49:48 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,34 +258,30 @@ int ydist_quad4(float O, int x, int y, t_cub *d)
 	return (y_dist);
 }
 
-int which_wall(int dists_fov[250][2], int i, t_cub *d)
+int which_wall(int dists_fov[250][2], int i, int j, t_cub *d)
 {
 	int wall;
 
 	wall = 0x000000;
 	if (dists_fov[i / 2][1] == 1)
 	{
-		wall = (*(int *)(d->no.addr + ((d->no.img_h +
-										(d->no.img_w * 64)) *
-									   (d->no.bits_per_pixel / 8))));
+		wall = (*(int*)(d->no.addr + ((i +
+			(j * d->no.img_w)) * (d->no.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 2)
 	{
-		wall = (*(int *)(d->so.addr + ((d->so.img_h +
-										(d->so.img_w * 64)) *
-									   (d->so.bits_per_pixel / 8))));
+		wall = (*(int*)(d->so.addr + ((i +
+			(j * d->so.img_w)) * (d->so.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 3)
 	{
-		wall = (*(int *)(d->we.addr + ((d->we.img_h +
-										(d->we.img_w * 64)) *
-									   (d->we.bits_per_pixel / 8))));
+		wall = (*(int*)(d->we.addr + ((i +
+			(j * d->we.img_w)) * (d->we.bits_per_pixel / 8))));
 	}
 	else if (dists_fov[i / 2][1] == 4)
 	{
-		wall = (*(int *)(d->ea.addr + ((d->ea.img_h +
-										(d->ea.img_w * 64)) *
-									   (d->ea.bits_per_pixel / 8))));
+		wall = (*(int*)(d->ea.addr + ((i +
+			(j * d->ea.img_w)) * (d->ea.bits_per_pixel / 8))));
 	}
 	return (wall);
 }
@@ -301,20 +297,17 @@ void paint_screen(int dists_fov[250][2], int i, t_cub *d)
 		j = 0;
 		while (j < (250 - (dists_fov[i / 2][0] / 2)))
 		{
-			//mlx_pixel_put(d->mlx, d->win, i, j, d->hex_ceil);
 			put_pix(d, i, j, d->hex_ceil);
 			j++;
 		}
 		while (j < (250 + (dists_fov[i / 2][0] / 2)) && j < 500)
 		{
-			wall = which_wall(dists_fov, i, d);
+			wall = which_wall(dists_fov, i, j, d);
 			put_pix(d, i, j, wall);
-			//mlx_pixel_put(d->mlx, d->win, i, j, wall);
 			j++;
 		}
 		while (j < 500)
 		{
-			//mlx_pixel_put(d->mlx, d->win, i, j, d->hex_floor);
 			put_pix(d, i, j, d->hex_floor);
 			j++;
 		}
@@ -520,10 +513,6 @@ static void init_data(t_cub *d)
 	d->map_strings = ft_strarrnew();
 	d->img = NULL;
 	d->win = NULL;
-	d->no.img = NULL;
-	d->so.img = NULL;
-	d->we.img = NULL;
-	d->ea.img = NULL;
 	d->g_player.startx = 0;
 	d->g_player.starty = 0;
 }

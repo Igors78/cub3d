@@ -3,13 +3,13 @@ C 255,   200   ,    160
 
 F  122 , 122 , 122
 
-NO ./pics/redbrick.xpm
+NO ./textures/wall.xpm
 
-SO ./pics/greystone.xpm
+SO ./textures/wall2.xpm
 
-WE ./pics/wood.xpm
+WE ./textures/wall3.xpm
 
-EA ./pics/bluestone.xpm
+EA ./textures/wall4.xpm
 
 
 
