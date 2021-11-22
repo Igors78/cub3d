@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 15:35:01 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:41:12 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	main(int argc, char **argv)
 	cast_rays(0, 0, 0, &d);
 	mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
 	mlx_hook(d.win, 2, 1L << 0, &key_event, &d);
+	mlx_hook(d.win, 17, 0, &exit_hook, &d);
 	mlx_loop(d.mlx);
 	clean_up(&d);
 	return (0);

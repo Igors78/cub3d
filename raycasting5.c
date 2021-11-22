@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 11:08:29 by khanakgulat       #+#    #+#             */
-/*   Updated: 2021/11/22 14:26:02 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 15:39:10 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,10 @@ int	cast_rays(int x_dist, int y_dist, int mindist, t_cub *d)
 	}
 	paint_screen(dists_fov, 0, d);
 	return (1);
+}
+
+int	exit_hook(t_cub *d)
+{
+	clean_up(d);
+	exit(0);
 }
