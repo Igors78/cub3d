@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 15:34:37 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:39:17 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ float		spawn_angle(char dir);
 static int	key_event(int button, void *param);
 static int	ft_checkarg(char *str);
 static void	init_data(t_cub *d);
+int			exit_hook(t_cub *d);
 
 #endif

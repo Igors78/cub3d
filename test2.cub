@@ -1,12 +1,15 @@
 
 NO ./textures/wall.xpm
+F 128,128,128
 WE ./textures/greystone.xpm
 SO ./textures/colorstone.xpm
-EA ./textures/mossy.xpm
 
 
-F 128,128,128
+
+
 C 128,128,0
+
+EA ./textures/mossy.xpm
 
 111111111111111111111111111111111111111111
 100000000101000000000000000000000000000001

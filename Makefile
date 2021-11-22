@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 15:34:48 by ioleinik         ###   ########.fr        #
+#    Updated: 2021/11/22 15:20:42 by khanakgulat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
 FILES = clean_up.c \
 		cub.c \
 		fill.c \
