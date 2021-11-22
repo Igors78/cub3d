@@ -1,9 +1,10 @@
 C 122, 134, 255
-NO      ./pics/purplestone.xpm
-SO ./pics/greystone.xpm
-EA ./pics/redbrick.xpm
-WE ./pics/wood.xpm
 F 45,56,34
+NO      ./textures/purplestone.xpm
+SO ./textures/greystone.xpm
+EA ./textures/redbrick.xpm
+WE ./textures/wood.xpm
+
 111111111111111111111111111111
 111111111000100000000000011111
 100000000000000000111000100001

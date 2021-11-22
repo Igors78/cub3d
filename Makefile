@@ -6,7 +6,7 @@
 #    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 11:36:35 by khanakgulat      ###   ########.fr        #
+#    Updated: 2021/11/22 11:54:28 by khanakgulat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,5 +41,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) 
+
+norme: 
+	norminette $(FILES)
 
 re: fclean all
