@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
+#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 11:54:28 by khanakgulat      ###   ########.fr        #
+#    Updated: 2021/11/22 15:17:27 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,6 @@ fclean: clean
 	rm -f $(NAME) 
 
 norme: 
-	norminette $(FILES)
+	norminette $(FILES) libft/ || true
 
 re: fclean all
