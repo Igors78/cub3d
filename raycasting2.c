@@ -6,13 +6,13 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by khanakgulat       #+#    #+#             */
-/*   Updated: 2021/11/22 10:54:44 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 14:26:20 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int	ydist_quad3(float O, int x, int y, t_cub *d)
+int	ydist_quad3(float o, int x, int y, t_cub *d)
 {
 	int	y_dist;
 	int	dx;
@@ -20,25 +20,25 @@ int	ydist_quad3(float O, int x, int y, t_cub *d)
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = 100 - (d->g_player.posy % 100);
-	dx = dy / tan(O - M_PI);
+	dx = dy / tan(o - M_PI);
 	x = d->g_player.posx + dx;
 	y = d->g_player.posy + dy;
 	while (x > 0 && x < (d->map_w * 100) && y > 0 && y < (d->map_h * 100))
 	{
 		if (d->map[(y + 1) / 100][x / 100] == 1)
 		{
-			y_dist = dy / sin(O - M_PI);
+			y_dist = dy / sin(o - M_PI);
 			break ;
 		}
 		dy += 100;
-		dx = dy / tan(O - M_PI);
+		dx = dy / tan(o - M_PI);
 		x = d->g_player.posx + dx;
 		y = d->g_player.posy + dy;
 	}
 	return (y_dist);
 }
 
-int	xdist_quad4(float O, int x, int y, t_cub *d)
+int	xdist_quad4(float o, int x, int y, t_cub *d)
 {
 	int	x_dist;
 	int	dx;
@@ -46,27 +46,27 @@ int	xdist_quad4(float O, int x, int y, t_cub *d)
 
 	x_dist = 20000 * max(d->map_w, d->map_h);
 	dx = (d->g_player.posx % 100);
-	dy = dx * tan((2 * M_PI) - O);
+	dy = dx * tan((2 * M_PI) - o);
 	x = d->g_player.posx - dx;
 	y = d->g_player.posy + dy;
 	while (x > 0 && x < (d->map_w * 100) && y > 0 && y < (d->map_h * 100))
 	{
 		if (d->map[(y / 100)][(x - 1) / 100] == 1)
 		{
-			x_dist = dy / sin((2 * M_PI) - O);
-			if (O > 2 * M_PI - 0.02)
+			x_dist = dy / sin((2 * M_PI) - o);
+			if (o > 2 * M_PI - 0.02)
 				x_dist = dx;
 			break ;
 		}
 		dx += 100;
-		dy = dx * tan((2 * M_PI) - O);
+		dy = dx * tan((2 * M_PI) - o);
 		x = d->g_player.posx - dx;
 		y = d->g_player.posy + dy;
 	}
 	return (x_dist);
 }
 
-int	ydist_quad4(float O, int x, int y, t_cub *d)
+int	ydist_quad4(float o, int x, int y, t_cub *d)
 {
 	int	y_dist;
 	int	dx;
@@ -74,18 +74,18 @@ int	ydist_quad4(float O, int x, int y, t_cub *d)
 
 	y_dist = 20000 * max(d->map_w, d->map_h);
 	dy = 100 - (d->g_player.posy % 100);
-	dx = dy / tan((2 * M_PI) - O);
+	dx = dy / tan((2 * M_PI) - o);
 	x = d->g_player.posx - dx;
 	y = d->g_player.posy + dy;
 	while (x > 0 && x < (d->map_w * 100) && y > 0 && y < (d->map_h * 100))
 	{
 		if (d->map[(y) / 100][(x - 1) / 100] == 1)
 		{
-			y_dist = dy / sin((2 * M_PI) - O);
+			y_dist = dy / sin((2 * M_PI) - o);
 			break ;
 		}
 		dy += 100;
-		dx = dy / tan((2 * M_PI) - O);
+		dx = dy / tan((2 * M_PI) - o);
 		x = d->g_player.posx - dx;
 		y = d->g_player.posy + dy;
 	}

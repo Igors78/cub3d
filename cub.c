@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 15:14:15 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:28:00 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	key_event(int button, void *param)
 		clean_up(d);
 		exit(0);
 	}
-	keys_AW(button, d, 0, 0);
-	keys_DS(button, d, 0, 0);
+	keys_aw(button, d, 0, 0);
+	keys_ds(button, d, 0, 0);
 	if (button == 65361 || button == 123)
-		d->g_player.O = angle_change(0, d->g_player.O);
+		d->g_player.o = angle_change(0, d->g_player.o);
 	if (button == 65363 || button == 124)
-		d->g_player.O = angle_change(1, d->g_player.O);
+		d->g_player.o = angle_change(1, d->g_player.o);
 	mlx_destroy_image(d->mlx, d->img);
 	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
 	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, \
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	fill_map_color(&d);
 	debug_print(&d);
 	coord_to_pixel(&d);
-	d.g_player.O = spawn_angle(d.g_player.start_dir);
+	d.g_player.o = spawn_angle(d.g_player.start_dir);
 	cast_rays(0, 0, 0, &d);
 	mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
 	mlx_hook(d.win, 2, 1L << 0, &key_event, &d);
