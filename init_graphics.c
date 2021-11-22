@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_graphics.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 10:06:15 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 11:55:17 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/20 11:21:02 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
