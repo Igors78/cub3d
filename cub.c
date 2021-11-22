@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/20 22:25:43 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:14:15 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 static int	key_event(int button, void *param)
 {
-  t_cub d;
+	t_cub	*d;
+
 	d = param;
 	if (button == 65307 || button == 53)
 	{
