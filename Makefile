@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 12:28:53 by ioleinik         ###   ########.fr        #
+#    Updated: 2021/11/22 11:54:28 by khanakgulat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ FILES = clean_up.c \
 		raycasting1.c \
 		raycasting2.c \
 		raycasting3.c \
-		raycasting4.c
+		raycasting4.c \
+		raycasting5.c
 
 OBJ = $(FILES:.c=.o)
 
