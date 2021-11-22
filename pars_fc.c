@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 13:56:42 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:53:27 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	fill_ceilcolor(char **arr, char *s, t_cub *d)
 	value = 0;
 	while (col[i])
 	{
-		if (col[i][0] && col[i][1] && col[i][0] == '0' && col[i][1] == '\0')
+		if (col[i][0] && col[i][0] == '0' && !col[i][1])
 		{
 			d->c_color[count++] = 0;
 			return ;
