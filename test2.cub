@@ -7,7 +7,7 @@ SO ./textures/colorstone.xpm
 
 
 
-C 128,128,0
+C 0,0,0
 
 EA ./textures/mossy.xpm
 

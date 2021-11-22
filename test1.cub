@@ -1,4 +1,4 @@
-C 122, 134, 255
+C 0,0,0
 F 45,56,34
 NO      ./textures/purplestone.xpm
 SO ./textures/greystone.xpm
