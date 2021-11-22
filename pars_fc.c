@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/17 16:59:12 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 13:56:42 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	check_colrange(char **arr, char *s, t_cub *d)
 		k = 0;
 		while (col[i][k])
 		{
-			if (!ft_isdigit(s[i]))
+			if (!ft_isdigit(col[i][k]))
 			{
 				ft_split_free(arr);
 				ft_split_free(col);
