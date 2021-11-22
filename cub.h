@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 15:34:37 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:58:16 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			xdist_quad3(float o, int x, int y, t_cub *d);
 int			ydist_quad3(float o, int x, int y, t_cub *d);
 int			xdist_quad4(float o, int x, int y, t_cub *d);
 int			ydist_quad4(float o, int x, int y, t_cub *d);
-int			which_wall(int dists_fov[250][2], int i, t_cub *d);
+int			which_wall(int dists_fov[250][2], int i, int j, t_cub *d);
 void		paint_screen(int dists_fov[250][2], int i, t_cub *d);
 int			set_dists_wall(int *x_d, int *y_d, float o, t_cub *d);
 int			set_dists_wall2(int *x_d, int *y_d, float o, t_cub *d);
