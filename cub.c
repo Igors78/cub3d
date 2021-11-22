@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 10:26:03 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 10:42:17 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #define EWALL 0x0000ff
 #define SWALL 0xffff00
 
-static int key_event(int button, void *param)
+static int	key_event(int button, void *param)
 {
-	t_cub *d;
+	t_cub	*d;
 
 	d = param;
 	if (button == 65307 || button == 53)
@@ -41,17 +41,17 @@ static int key_event(int button, void *param)
 	return (0);
 }
 
-void put_pix(t_cub *d, int x, int y, int color)
+void	put_pix(t_cub *d, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = d->addr + (y * d->line_length + x * (d->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-static int ft_checkarg(char *str)
+static int	ft_checkarg(char *str)
 {
-	int i;
+	int	i;
 
 	i = ft_strlen(str);
 	if (i < 5)
@@ -62,7 +62,7 @@ static int ft_checkarg(char *str)
 	return (0);
 }
 
-static void init_data(t_cub *d)
+static void	init_data(t_cub *d)
 {
 	d->map = NULL;
 	d->map_h = 0;
@@ -80,7 +80,7 @@ static void init_data(t_cub *d)
 	d->g_player.starty = 0;
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_cub d;
 

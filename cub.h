@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 10:25:34 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 11:07:14 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
+# include "mlx/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -98,7 +99,8 @@ int			xdist_quad4(float O, int x, int y, t_cub *d);
 int			ydist_quad4(float O, int x, int y, t_cub *d);
 int			which_wall(int dists_fov[250][2], int i, t_cub *d);
 void		paint_screen(int dists_fov[250][2], int i, t_cub *d);
-int			set_dists_wall(int *x_d, int *y_d, int wall, float O, t_cub *d);
+int			set_dists_wall(int *x_d, int *y_d, float O, t_cub *d);
+int			set_dists_wall2(int *x_d, int *y_d, float O, t_cub *d);
 int			cast_rays(int x_dist, int y_dist, int mindist, t_cub *d);
 float		angle_change(int dir, float ang);
 void		keys_AW(int key, t_cub *d, int x, int y);

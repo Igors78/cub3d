@@ -6,27 +6,27 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:08:06 by khanakgulat       #+#    #+#             */
-/*   Updated: 2021/11/22 10:08:42 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 10:55:00 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int max(int a, int b)
+int	max(int a, int b)
 {
 	if (a > b)
 		return (a);
 	return (b);
 }
 
-int min(int a, int b)
+int	min(int a, int b)
 {
 	if (a > b)
 		return (b);
 	return (a);
 }
 
-float check_limits(float O)
+float	check_limits(float O)
 {
 	if (O < 0)
 		O += (2 * M_PI);
@@ -35,7 +35,7 @@ float check_limits(float O)
 	return (O);
 }
 
-float angle_change(int dir, float ang)
+float	angle_change(int dir, float ang)
 {
 	if (dir == 0)
 		ang -= 0.1;
@@ -48,7 +48,7 @@ float angle_change(int dir, float ang)
 	return (ang);
 }
 
-void coord_to_pixel(t_cub *d)
+void	coord_to_pixel(t_cub *d)
 {
 	d->g_player.posx = (d->g_player.startx * 100) + 50;
 	d->g_player.posy = (d->g_player.starty * 100) + 50;
