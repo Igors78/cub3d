@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 14:28:00 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 15:35:01 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	main(int argc, char **argv)
 	init_graphics(&d);
 	read_config(argv[1], &d);
 	fill_map_color(&d);
-	debug_print(&d);
 	coord_to_pixel(&d);
 	d.g_player.o = spawn_angle(d.g_player.start_dir);
 	cast_rays(0, 0, 0, &d);

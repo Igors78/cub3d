@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 14:28:11 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 15:34:37 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void		inv_color(t_cub *d);
 void		parse_floor(char **arr, t_cub *d);
 void		parse_ceil(char **arr, t_cub *d);
 void		parse_doubles(char **a, t_cub *d);
-void		debug_print(t_cub *d);
 void		exit_color(char **arr, char **col, t_cub *d);
 void		fill_map_color(t_cub *d);
 void		print_arr(char **arr);

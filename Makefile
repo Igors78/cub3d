@@ -6,14 +6,13 @@
 #    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 15:17:27 by ioleinik         ###   ########.fr        #
+#    Updated: 2021/11/22 15:34:48 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 FILES = clean_up.c \
 		cub.c \
-		debug_print.c \
 		fill.c \
 		init_graphics.c \
 		pars_doubles.c \
