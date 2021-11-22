@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:08:06 by khanakgulat       #+#    #+#             */
-/*   Updated: 2021/11/22 10:55:00 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 14:26:12 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	min(int a, int b)
 	return (a);
 }
 
-float	check_limits(float O)
+float	check_limits(float o)
 {
-	if (O < 0)
-		O += (2 * M_PI);
-	else if (O > (2 * M_PI))
-		O -= (2 * M_PI);
-	return (O);
+	if (o < 0)
+		o += (2 * M_PI);
+	else if (o > (2 * M_PI))
+		o -= (2 * M_PI);
+	return (o);
 }
 
 float	angle_change(int dir, float ang)

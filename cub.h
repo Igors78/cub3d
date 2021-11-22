@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 11:35:14 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 14:28:11 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_player
 {
 	int		posx;
 	int		posy;
-	float	O;
+	float	o;
 	int		startx;
 	int		starty;
 	char	start_dir;
@@ -88,23 +88,23 @@ void		init_graphics(t_cub *d);
 void		put_pix(t_cub *d, int x, int y, int color);
 int			max(int a, int b);
 int			min(int a, int b);
-float		check_limits(float O);
-int			xdist_quad1(float O, int x, int y, t_cub *d);
-int			ydist_quad1(float O, int x, int y, t_cub *d);
-int			xdist_quad2(float O, int x, int y, t_cub *d);
-int			ydist_quad2(float O, int x, int y, t_cub *d);
-int			xdist_quad3(float O, int x, int y, t_cub *d);
-int			ydist_quad3(float O, int x, int y, t_cub *d);
-int			xdist_quad4(float O, int x, int y, t_cub *d);
-int			ydist_quad4(float O, int x, int y, t_cub *d);
+float		check_limits(float o);
+int			xdist_quad1(float o, int x, int y, t_cub *d);
+int			ydist_quad1(float o, int x, int y, t_cub *d);
+int			xdist_quad2(float o, int x, int y, t_cub *d);
+int			ydist_quad2(float o, int x, int y, t_cub *d);
+int			xdist_quad3(float o, int x, int y, t_cub *d);
+int			ydist_quad3(float o, int x, int y, t_cub *d);
+int			xdist_quad4(float o, int x, int y, t_cub *d);
+int			ydist_quad4(float o, int x, int y, t_cub *d);
 int			which_wall(int dists_fov[250][2], int i, t_cub *d);
 void		paint_screen(int dists_fov[250][2], int i, t_cub *d);
-int			set_dists_wall(int *x_d, int *y_d, float O, t_cub *d);
-int			set_dists_wall2(int *x_d, int *y_d, float O, t_cub *d);
+int			set_dists_wall(int *x_d, int *y_d, float o, t_cub *d);
+int			set_dists_wall2(int *x_d, int *y_d, float o, t_cub *d);
 int			cast_rays(int x_dist, int y_dist, int mindist, t_cub *d);
 float		angle_change(int dir, float ang);
-void		keys_AW(int key, t_cub *d, int x, int y);
-void		keys_DS(int key, t_cub *d, int x, int y);
+void		keys_aw(int key, t_cub *d, int x, int y);
+void		keys_ds(int key, t_cub *d, int x, int y);
 void		coord_to_pixel(t_cub *d);
 float		spawn_angle(char dir);
 static int	key_event(int button, void *param);
