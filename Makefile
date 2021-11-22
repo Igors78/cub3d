@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
+#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 10:15:35 by khanakgulat      ###   ########.fr        #
+#    Updated: 2021/11/22 12:28:53 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,5 +40,8 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) 
+
+norme: 
+	norminette $(FILES)
 
 re: fclean all

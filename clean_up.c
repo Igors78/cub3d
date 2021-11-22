@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 10:27:03 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 10:41:01 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 12:24:03 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,8 @@ void	inv_color(t_cub *d)
 	ft_terror("Error\nNot valid color specification\n");
 }
 
-void	clean_up(t_cub *d)
+static void	cl_upgraph(t_cub *d)
 {
-	int	i;
-
-	i = 0;
-	if (d->map_strings)
-	{
-		while (d->map_strings[i])
-		{
-			free(d->map_strings[i]);
-			i++;
-		}
-		free(d->map_strings);
-	}
-	i = 0;
-	if (d->map)
-	{
-		while (i < d->map_h)
-		{
-			free(d->map[i]);
-			i++;
-		}
-		free(d->map);
-	}
 	if (d->no.img)
 		mlx_destroy_image(d->mlx, d->no.img);
 	if (d->so.img)
@@ -66,6 +44,26 @@ void	clean_up(t_cub *d)
 	if (d->img)
 		mlx_destroy_image(d->mlx, d->img);
 	mlx_destroy_window(d->mlx, d->win);
-	// mlx_destroy_display(d->mlx);
 	free(d->mlx);
+}
+
+void	clean_up(t_cub *d)
+{
+	int	i;
+
+	i = 0;
+	if (d->map_strings)
+	{
+		while (d->map_strings[i])
+			free(d->map_strings[i++]);
+		free(d->map_strings);
+	}
+	i = 0;
+	if (d->map)
+	{
+		while (i < d->map_h)
+			free(d->map[i++]);
+		free(d->map);
+	}
+	cl_upgraph(d);
 }
