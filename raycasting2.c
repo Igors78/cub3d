@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 10:07:08 by khanakgulat       #+#    #+#             */
-/*   Updated: 2021/11/22 14:26:20 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 16:51:44 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,30 @@ int	ydist_quad4(float o, int x, int y, t_cub *d)
 	return (y_dist);
 }
 
-int	which_wall(int dists_fov[250][2], int i, t_cub *d)
+int	which_wall(int dists_fov[250][2], int i, int j, t_cub *d)
 {
 	int	wall;
 
 	wall = 0x000000;
 	if (dists_fov[i / 2][1] == 1)
 	{
-		wall = (*(int *)(d->no.addr + ((d->no.img_h + (d->no.img_w * 64))
-						* (d->no.bits_per_pixel / 8))));
+		wall = (*(unsigned int *)(d->no.addr + ((d->no.line_length * j + i \
+		* (d->no.bits_per_pixel / 8)))));
 	}
 	else if (dists_fov[i / 2][1] == 2)
 	{
-		wall = (*(int *)(d->so.addr + ((d->so.img_h + (d->so.img_w * 64))
-						* (d->so.bits_per_pixel / 8))));
+		wall = (*(unsigned int *)(d->so.addr + ((d->so.line_length * j + i \
+		* (d->so.bits_per_pixel / 8)))));
 	}
 	else if (dists_fov[i / 2][1] == 3)
 	{
-		wall = (*(int *)(d->we.addr + ((d->we.img_h + (d->we.img_w * 64))
-						* (d->we.bits_per_pixel / 8))));
+		wall = (*(unsigned int *)(d->we.addr + ((d->we.line_length * j + i \
+		* (d->we.bits_per_pixel / 8)))));
 	}
 	else if (dists_fov[i / 2][1] == 4)
 	{
-		wall = (*(int *)(d->ea.addr + ((d->ea.img_h + (d->ea.img_w * 64))
-						* (d->ea.bits_per_pixel / 8))));
+		wall = (*(unsigned int *)(d->ea.addr + ((d->ea.line_length * j + i \
+		* (d->ea.bits_per_pixel / 8)))));
 	}
 	return (wall);
 }
@@ -136,7 +136,7 @@ void	paint_screen(int dists_fov[250][2], int i, t_cub *d)
 		}
 		while (j < (250 + (dists_fov[i / 2][0] / 2)) && j < 500)
 		{
-			wall = which_wall(dists_fov, i, d);
+			wall = which_wall(dists_fov, i, j, d);
 			put_pix(d, i, j, wall);
 			j++;
 		}
