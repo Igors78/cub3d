@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 14:10:45 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 20:48:21 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,21 @@ static void	fill_floorcolor(char **arr, char *s, t_cub *d)
 
 static void	fill_ceilcolor(char **arr, char *s, t_cub *d)
 {
-	static int	count;
-	int			value;
-	int			i;
-	char		**col;
+	int		count;
+	int		value;
+	int		i;
+	char	**col;
 
 	col = ft_split(s, ',');
 	i = 0;
 	value = 0;
+	count = 0;
 	while (col[i])
 	{
 		if (col[i][0] && col[i][0] == '0' && !col[i][1])
 		{
 			d->c_color[count++] = 0;
+			ft_split_free(col);
 			return ;
 		}
 		if (col[i][0])
