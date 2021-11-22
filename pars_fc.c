@@ -78,7 +78,7 @@ static void	fill_ceilcolor(char **arr, char *s, t_cub *d)
 	value = 0;
 	while (col[i])
 	{
-		if (col[i][0] && col[i][1] && col[i][0] == '0' && col[i][1] == '\0')
+		if (col[i][0] && col[i][0] == '0' && !col[i][1])
 		{
 			d->c_color[count++] = 0;
 			return ;

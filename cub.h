@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 10:51:42 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:35:14 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CUB_H
 
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
-# include "minilibx-linux/mlx_int.h"
+# include "mlx/mlx.h"
+// # include "mlx/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -71,20 +71,44 @@ typedef struct s_cub
 	t_player	g_player;
 }			t_cub;
 
-void	read_config(char *path, t_cub *d);
-void	parse_path(char **str, t_cub *d);
-void	clean_up(t_cub *d);
-void	parse_map(int fd, t_cub *d);
-void	inv_map(t_cub *d);
-void	inv_color(t_cub *d);
-void	parse_floor(char **arr, t_cub *d);
-void	parse_ceil(char **arr, t_cub *d);
-void	parse_doubles(char **a, t_cub *d);
-void	debug_print(t_cub *d);
-void	exit_color(char **arr, char **col, t_cub *d);
-void	fill_map_color(t_cub *d);
-void	print_arr(char **arr);
-void	init_graphics(t_cub *d);
-void	put_pix(t_cub *d, int x, int y, int color);
+void		read_config(char *path, t_cub *d);
+void		parse_path(char **str, t_cub *d);
+void		clean_up(t_cub *d);
+void		parse_map(int fd, t_cub *d);
+void		inv_map(t_cub *d);
+void		inv_color(t_cub *d);
+void		parse_floor(char **arr, t_cub *d);
+void		parse_ceil(char **arr, t_cub *d);
+void		parse_doubles(char **a, t_cub *d);
+void		debug_print(t_cub *d);
+void		exit_color(char **arr, char **col, t_cub *d);
+void		fill_map_color(t_cub *d);
+void		print_arr(char **arr);
+void		init_graphics(t_cub *d);
+void		put_pix(t_cub *d, int x, int y, int color);
+int			max(int a, int b);
+int			min(int a, int b);
+float		check_limits(float O);
+int			xdist_quad1(float O, int x, int y, t_cub *d);
+int			ydist_quad1(float O, int x, int y, t_cub *d);
+int			xdist_quad2(float O, int x, int y, t_cub *d);
+int			ydist_quad2(float O, int x, int y, t_cub *d);
+int			xdist_quad3(float O, int x, int y, t_cub *d);
+int			ydist_quad3(float O, int x, int y, t_cub *d);
+int			xdist_quad4(float O, int x, int y, t_cub *d);
+int			ydist_quad4(float O, int x, int y, t_cub *d);
+int			which_wall(int dists_fov[250][2], int i, t_cub *d);
+void		paint_screen(int dists_fov[250][2], int i, t_cub *d);
+int			set_dists_wall(int *x_d, int *y_d, float O, t_cub *d);
+int			set_dists_wall2(int *x_d, int *y_d, float O, t_cub *d);
+int			cast_rays(int x_dist, int y_dist, int mindist, t_cub *d);
+float		angle_change(int dir, float ang);
+void		keys_AW(int key, t_cub *d, int x, int y);
+void		keys_DS(int key, t_cub *d, int x, int y);
+void		coord_to_pixel(t_cub *d);
+float		spawn_angle(char dir);
+static int	key_event(int button, void *param);
+static int	ft_checkarg(char *str);
+static void	init_data(t_cub *d);
 
 #endif

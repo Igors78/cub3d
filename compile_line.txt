@@ -1,2 +1,0 @@
-gcc new.c -framework OpenGL -framework AppKit -lmlx -Lmlx -o cub
-gcc new.c  -lmlx -L./minilibx-linux -lX11 -lXext -lm -o cub

@@ -2,8 +2,8 @@ C 122, 134, 255
 F 45,56,34
 NO      ./textures/purplestone.xpm
 SO ./textures/greystone.xpm
-EA ./textures/redbrick.xpm
-WE ./textures/wood.xpm
+EA ./textures/wall.xpm
+WE ./textures/wall2.xpm
 
 111111111111111111111111111111
 111111111000100000000000011111
