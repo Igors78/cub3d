@@ -6,7 +6,7 @@
 /*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 11:07:14 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/22 11:35:14 by khanakgulat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft/libft.h"
 # include "mlx/mlx.h"
-# include "mlx/mlx_int.h"
+// # include "mlx/mlx_int.h"
 # include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
