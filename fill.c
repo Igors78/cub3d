@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 22:05:51 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/19 02:04:22 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/23 15:29:33 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	fill_map_color(t_cub *d)
 	d->map = (int **)malloc(sizeof(int *) * d->map_h);
 	while (i < d->map_h)
 	{
-		d->map[i] = (int *)malloc(sizeof(int) * d->map_w);
+		d->map[i] = (int *)malloc(sizeof(int) * (d->map_w + 1));
 		i++;
 	}
 	prefill(d);
