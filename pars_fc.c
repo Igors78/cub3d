@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/23 10:58:41 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:00:32 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static void	check_colrange(char **arr, char *s, t_cub *d)
 
 static void	fill_floorcolor(char **arr, char *s, t_cub *d)
 {
-	static int	count;
-	int			value;
-	int			i;
-	char		**col;
+	int		count;
+	int		value;
+	int		i;
+	char	**col;
 
 	col = ft_split(s, ',');
 	i = 0;
