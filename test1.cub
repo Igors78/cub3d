@@ -1,7 +1,7 @@
 C 0,0,0
 F 45,56,34
-NO      ./textures/purplestone.xpm
-SO ./textures/greystone.xpm
+NO      ./textures/wall3.xpm
+SO ./textures/wall4.xpm
 EA ./textures/wall.xpm
 WE ./textures/wall2.xpm
 

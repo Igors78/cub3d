@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 13:09:29 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/23 13:00:32 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:18:14 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	fill_floorcolor(char **arr, char *s, t_cub *d)
 	col = ft_split(s, ',');
 	i = 0;
 	value = 0;
+	count = 0;
 	while (col[i])
 	{
 		if (col[i][0] && col[i][0] == '0' && !col[i][1])
