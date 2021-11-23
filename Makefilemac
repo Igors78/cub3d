@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefilemac                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+         #
+#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
-#    Updated: 2021/11/22 15:20:42 by khanakgulat      ###   ########.fr        #
+#    Updated: 2021/11/23 08:57:23 by ioleinik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FILES = clean_up.c \
 		raycasting2.c \
 		raycasting3.c \
 		raycasting4.c \
-		raycasting5.c
+		raycasting5.c render.c
 
 OBJ = $(FILES:.c=.o)
 

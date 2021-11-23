@@ -28,7 +28,7 @@ SRC			= clean_up.c \
 		raycasting2.c \
 		raycasting3.c \
 		raycasting4.c \
-		raycasting5.c
+		raycasting5.c render.c
 
 OBJ			= ${SRC:.c=.o}
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: khanakgulati <khanakgulati@student.42.f    +#+  +:+       +#+        */
+/*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 11:26:35 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 15:41:12 by khanakgulat      ###   ########.fr       */
+/*   Updated: 2021/11/23 09:24:13 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,7 @@ static int	key_event(int button, void *param)
 		d->g_player.o = angle_change(0, d->g_player.o);
 	if (button == 65363 || button == 124)
 		d->g_player.o = angle_change(1, d->g_player.o);
-	mlx_destroy_image(d->mlx, d->img);
-	d->img = mlx_new_image(d->mlx, MAX_X, MAX_Y);
-	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, \
-	&d->endian);
-	cast_rays(0, 0, 0, d);
-	mlx_put_image_to_window(d->mlx, d->win, d->img, 0, 0);
+	render(d);
 	return (0);
 }
 
@@ -91,6 +86,7 @@ int	main(int argc, char **argv)
 	d.g_player.o = spawn_angle(d.g_player.start_dir);
 	cast_rays(0, 0, 0, &d);
 	mlx_put_image_to_window(d.mlx, d.win, d.img, 0, 0);
+	mlx_do_key_autorepeatoff(d.mlx);
 	mlx_hook(d.win, 2, 1L << 0, &key_event, &d);
 	mlx_hook(d.win, 17, 0, &exit_hook, &d);
 	mlx_loop(d.mlx);

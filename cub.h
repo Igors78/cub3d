@@ -6,7 +6,7 @@
 /*   By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 12:05:16 by ioleinik          #+#    #+#             */
-/*   Updated: 2021/11/22 17:21:51 by ioleinik         ###   ########.fr       */
+/*   Updated: 2021/11/23 08:56:53 by ioleinik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void		keys_ds(int key, t_cub *d, int x, int y);
 void		coord_to_pixel(t_cub *d);
 float		spawn_angle(char dir);
 int			exit_hook(t_cub *d);
+void		render(t_cub *d);
 
 #endif
