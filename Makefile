@@ -1,21 +1,17 @@
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefilemac                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ioleinik <ioleinik@student.42wolfsburg.de> +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/22 09:38:06 by khanakgulat       #+#    #+#              #
+#    Updated: 2021/11/23 08:57:23 by ioleinik         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-RM			= rm -f
-
-NAME		= cub3d
-
-LIB_PATH	= ./libft
-INCL_PATH	= ./libft
-
-LIBRARY		= libft.a
-
-MINI_PATH	= ./minilibx-linux
-MINI_INCL	= ./minilibx-linux
-
-MAKE		= make
-
-SRC			= clean_up.c \
+NAME = cub3D
+FILES = clean_up.c \
 		cub.c \
 		fill.c \
 		init_graphics.c \
@@ -30,36 +26,22 @@ SRC			= clean_up.c \
 		raycasting4.c \
 		raycasting5.c render.c
 
-OBJ			= ${SRC:.c=.o}
+OBJ = $(FILES:.c=.o)
 
-LINKS		= -I$(INCL_PATH) \
-			-I$(MINI_INCL) \
-			-L $(MINI_PATH) -lmlx \
-			-L $(LIB_PATH) -lft \
-			-lX11 -lXext -lm
+all: $(NAME)
 
-all:		$(LIBRARY) $(NAME)
+$(NAME):
+	make -C ./libft
+	gcc $(FILES) libft/libft.a -framework OpenGL -framework AppKit -lmlx -Lmlx -o $(NAME)
 
+clean:
+	make -C ./libft fclean
+	rm -f $(OBJ)
 
-$(LIBRARY):
-			$(MAKE) -C $(LIB_PATH)
-			$(MAKE) -C $(MINI_PATH)
+fclean: clean
+	rm -f $(NAME) 
 
-$(NAME):	$(OBJ)
-			$(CC) -o $(NAME) $(CFLAGS) $(OBJ) $(LINKS) 
+norme: 
+	norminette $(FILES) libft/ || true
 
-clean:		
-			$(RM) $(OBJ)
-
-fclean:		clean
-			$(RM) $(NAME)
-			$(MAKE) -C $(LIB_PATH) fclean
-			$(MAKE) -C $(MINI_PATH) clean
-
-re:			fclean all
-#Command runs norminette only for my files, not on mlx library
-norm:
-			norminette libft/
-			norminette $(SRC) || true
-
-.PHONY: all clean fclean re norm
+re: fclean all
