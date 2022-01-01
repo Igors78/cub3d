@@ -12,3 +12,6 @@
 ![image](page10_1.jpg)
 ![image](page11_1.jpg)
 ![image](page12_1.jpg)
+
+Use Makefile if you are on MAC
+Use Makefilelinux if you are on linux
